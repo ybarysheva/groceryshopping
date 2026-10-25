@@ -1,0 +1,588 @@
+[
+  {
+    "id": "p01",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Bananas",
+    "imageUrl": "https://m.media-amazon.com/images/I/41JvAoqeMfL._SL300_.jpg",
+    "sort": 101,
+    "active": true
+  },
+  {
+    "id": "p02",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Mandarins",
+    "imageUrl": "https://m.media-amazon.com/images/I/51adL1NOCRL._SL300_.jpg",
+    "sort": 102,
+    "active": true
+  },
+  {
+    "id": "p03",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Blackberries",
+    "imageUrl": "https://m.media-amazon.com/images/I/41ob68Y9AVL._SL300_.jpg",
+    "sort": 103,
+    "active": true
+  },
+  {
+    "id": "p04",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Raspberries",
+    "imageUrl": "https://m.media-amazon.com/images/I/41I2mWqUT9L._SL300_.jpg",
+    "sort": 104,
+    "active": true
+  },
+  {
+    "id": "p05",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Blueberries",
+    "imageUrl": "https://m.media-amazon.com/images/I/41Cpd6xf4tL._SL300_.jpg",
+    "sort": 105,
+    "active": true
+  },
+  {
+    "id": "p06",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Avocados",
+    "imageUrl": "https://m.media-amazon.com/images/I/317cJaeN8OL._SL300_.jpg",
+    "sort": 106,
+    "active": true
+  },
+  {
+    "id": "p07",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Mini cucumbers",
+    "imageUrl": "https://m.media-amazon.com/images/I/416elVyMcBL._SL300_.jpg",
+    "sort": 107,
+    "active": true
+  },
+  {
+    "id": "p08",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Sweet mini peppers",
+    "imageUrl": "https://m.media-amazon.com/images/I/41lwHY7tMFL._SL300_.jpg",
+    "sort": 108,
+    "active": true
+  },
+  {
+    "id": "p09",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Cherry tomatoes",
+    "imageUrl": "https://m.media-amazon.com/images/I/51Dv1g-gxXL._SL300_.jpg",
+    "sort": 109,
+    "active": true
+  },
+  {
+    "id": "p10",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Arugula",
+    "imageUrl": "https://m.media-amazon.com/images/I/51fPD4fLBjL._SL300_.jpg",
+    "sort": 110,
+    "active": true
+  },
+  {
+    "id": "p11",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Chopped salad kit",
+    "imageUrl": "https://m.media-amazon.com/images/I/41qPLcvBcyL._SL300_.jpg",
+    "sort": 111,
+    "active": true
+  },
+  {
+    "id": "p12",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Broccoli",
+    "imageUrl": "https://m.media-amazon.com/images/I/41rgSGZYwAL._SL300_.jpg",
+    "sort": 112,
+    "active": true
+  },
+  {
+    "id": "p13",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Potatoes",
+    "imageUrl": "https://m.media-amazon.com/images/I/41rdoirK%2BqL._SL300_.jpg",
+    "sort": 113,
+    "active": true
+  },
+  {
+    "id": "p14",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Onions",
+    "imageUrl": "https://m.media-amazon.com/images/I/410t7g4Ks9L._SL300_.jpg",
+    "sort": 114,
+    "active": true
+  },
+  {
+    "id": "p15",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Garlic",
+    "imageUrl": "https://m.media-amazon.com/images/I/71OPBXKKLUL._SL300_.jpg",
+    "sort": 115,
+    "active": true
+  },
+  {
+    "id": "p16",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Lemons",
+    "imageUrl": "https://m.media-amazon.com/images/I/517HUBZTTlL._SL300_.jpg",
+    "sort": 116,
+    "active": true
+  },
+  {
+    "id": "p17",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Dill",
+    "imageUrl": "https://m.media-amazon.com/images/I/71OMDVk-cxL._SL300_.jpg",
+    "sort": 117,
+    "active": true
+  },
+  {
+    "id": "p18",
+    "store": "Amazon Fresh",
+    "section": "Produce",
+    "name": "Parsley",
+    "imageUrl": "https://m.media-amazon.com/images/I/816IaLdLuLL._SL300_.jpg",
+    "sort": 118,
+    "active": true
+  },
+  {
+    "id": "m01",
+    "store": "Amazon Fresh",
+    "section": "Meat and fish",
+    "name": "Chicken thighs, boneless skinless",
+    "size": "about 6 lb (2 packs)",
+    "imageUrl": "https://m.media-amazon.com/images/I/51-JrA1nnPL._SL300_.jpg",
+    "sort": 201,
+    "active": true
+  },
+  {
+    "id": "m02",
+    "store": "Amazon Fresh",
+    "section": "Meat and fish",
+    "name": "Chicken drumsticks",
+    "size": "about 5 lb",
+    "imageUrl": "https://m.media-amazon.com/images/I/41W4tw726ZL._SL300_.jpg",
+    "sort": 202,
+    "active": true
+  },
+  {
+    "id": "m03",
+    "store": "Amazon Fresh",
+    "section": "Meat and fish",
+    "name": "Ground beef",
+    "size": "about 2 lb",
+    "imageUrl": "https://m.media-amazon.com/images/I/41s3aurjkML._SL300_.jpg",
+    "sort": 203,
+    "active": true
+  },
+  {
+    "id": "m04",
+    "store": "Amazon Fresh",
+    "section": "Meat and fish",
+    "name": "Steak",
+    "size": "about 1.5 lb",
+    "imageUrl": "https://m.media-amazon.com/images/I/71u8HA0P80L._SL300_.jpg",
+    "sort": 204,
+    "active": true
+  },
+  {
+    "id": "m05",
+    "store": "Amazon Fresh",
+    "section": "Meat and fish",
+    "name": "Fresh salmon",
+    "size": "about 1 lb",
+    "imageUrl": "https://m.media-amazon.com/images/I/7147a0BYhcL._SL300_.jpg",
+    "sort": 205,
+    "active": true
+  },
+  {
+    "id": "m06",
+    "store": "Amazon Fresh",
+    "section": "Meat and fish",
+    "name": "Breakfast sausage",
+    "size": "12 oz",
+    "imageUrl": "https://m.media-amazon.com/images/I/51iz7x5SNTL._SL300_.jpg",
+    "sort": 206,
+    "active": true
+  },
+  {
+    "id": "m07",
+    "store": "Amazon Fresh",
+    "section": "Meat and fish",
+    "name": "Sliced ham",
+    "size": "about 9 oz",
+    "imageUrl": "https://m.media-amazon.com/images/I/41A7isDKs1L._SL300_.jpg",
+    "sort": 207,
+    "active": true
+  },
+  {
+    "id": "m08",
+    "store": "Amazon Fresh",
+    "section": "Meat and fish",
+    "name": "Salami",
+    "size": "about 8 oz",
+    "imageUrl": "https://m.media-amazon.com/images/I/71GTWmVjTuL._SL300_.jpg",
+    "sort": 208,
+    "active": true
+  },
+  {
+    "id": "d01",
+    "store": "Amazon Fresh",
+    "section": "Dairy and eggs",
+    "name": "Eggs",
+    "imageUrl": "https://m.media-amazon.com/images/I/311usfX4KiL._SL300_.jpg",
+    "sort": 301,
+    "active": true
+  },
+  {
+    "id": "d02",
+    "store": "Amazon Fresh",
+    "section": "Dairy and eggs",
+    "name": "Unsalted butter",
+    "imageUrl": "https://m.media-amazon.com/images/I/41R8ft5sefL._SL300_.jpg",
+    "sort": 302,
+    "active": true
+  },
+  {
+    "id": "d03",
+    "store": "Amazon Fresh",
+    "section": "Dairy and eggs",
+    "name": "Plain Greek yogurt",
+    "imageUrl": "https://m.media-amazon.com/images/I/31i24EPvC3L._SL300_.jpg",
+    "sort": 303,
+    "active": true
+  },
+  {
+    "id": "d04",
+    "store": "Amazon Fresh",
+    "section": "Dairy and eggs",
+    "name": "Chobani Flip",
+    "imageUrl": "https://m.media-amazon.com/images/I/51rg4u1Ib9L._SL300_.jpg",
+    "sort": 304,
+    "active": true
+  },
+  {
+    "id": "d05",
+    "store": "Amazon Fresh",
+    "section": "Dairy and eggs",
+    "name": "Feta",
+    "imageUrl": "https://m.media-amazon.com/images/I/714vJ0%2BHYgL._SL300_.jpg",
+    "sort": 305,
+    "active": true
+  },
+  {
+    "id": "d06",
+    "store": "Amazon Fresh",
+    "section": "Dairy and eggs",
+    "name": "Cream cheese",
+    "imageUrl": "https://m.media-amazon.com/images/I/714SH0ZpR0L._SL300_.jpg",
+    "sort": 306,
+    "active": true
+  },
+  {
+    "id": "d07",
+    "store": "Amazon Fresh",
+    "section": "Dairy and eggs",
+    "name": "Sour cream",
+    "imageUrl": "https://m.media-amazon.com/images/I/41M1ipdgb6L._SL300_.jpg",
+    "sort": 307,
+    "active": true
+  },
+  {
+    "id": "d08",
+    "store": "Amazon Fresh",
+    "section": "Dairy and eggs",
+    "name": "Cheddar",
+    "imageUrl": "https://m.media-amazon.com/images/I/41SYwQbn%2B0L._SL300_.jpg",
+    "sort": 308,
+    "active": true
+  },
+  {
+    "id": "d09",
+    "store": "Amazon Fresh",
+    "section": "Dairy and eggs",
+    "name": "Parmesan",
+    "imageUrl": "https://m.media-amazon.com/images/I/71nKSqZKJ9L._SL300_.jpg",
+    "sort": 309,
+    "active": true
+  },
+  {
+    "id": "d10",
+    "store": "Amazon Fresh",
+    "section": "Dairy and eggs",
+    "name": "Shredded cheese",
+    "imageUrl": "https://m.media-amazon.com/images/I/41OXzKsEISL._SL300_.jpg",
+    "sort": 310,
+    "active": true
+  },
+  {
+    "id": "b01",
+    "store": "Amazon Fresh",
+    "section": "Bread and breakfast",
+    "name": "Bagels",
+    "imageUrl": "https://m.media-amazon.com/images/I/71CnKfmMtiL._SL300_.jpg",
+    "sort": 401,
+    "active": true
+  },
+  {
+    "id": "b02",
+    "store": "Amazon Fresh",
+    "section": "Bread and breakfast",
+    "name": "Sliced bread",
+    "imageUrl": "https://m.media-amazon.com/images/I/41LfJG4ssrL._SL300_.jpg",
+    "sort": 402,
+    "active": true
+  },
+  {
+    "id": "b03",
+    "store": "Amazon Fresh",
+    "section": "Bread and breakfast",
+    "name": "Granola",
+    "imageUrl": "https://m.media-amazon.com/images/I/41Ko5HPa8tL._SL300_.jpg",
+    "sort": 403,
+    "active": true
+  },
+  {
+    "id": "b04",
+    "store": "Amazon Fresh",
+    "section": "Bread and breakfast",
+    "name": "Honey",
+    "imageUrl": "https://m.media-amazon.com/images/I/31kGt1MAO-L._SL300_.jpg",
+    "sort": 404,
+    "active": true
+  },
+  {
+    "id": "y01",
+    "store": "Amazon Fresh",
+    "section": "Pantry",
+    "name": "Tuna in olive oil",
+    "imageUrl": "https://m.media-amazon.com/images/I/41c%2Bd4svh3L._SL300_.jpg",
+    "sort": 501,
+    "active": true
+  },
+  {
+    "id": "y02",
+    "store": "Amazon Fresh",
+    "section": "Pantry",
+    "name": "Cannellini beans",
+    "imageUrl": "https://m.media-amazon.com/images/I/51igqUFFK8L._SL300_.jpg",
+    "sort": 502,
+    "active": true
+  },
+  {
+    "id": "y03",
+    "store": "Amazon Fresh",
+    "section": "Pantry",
+    "name": "Chickpeas",
+    "imageUrl": "https://m.media-amazon.com/images/I/41hCL%2Bc5Y6L._SL300_.jpg",
+    "sort": 503,
+    "active": true
+  },
+  {
+    "id": "y04",
+    "store": "Amazon Fresh",
+    "section": "Pantry",
+    "name": "Rice",
+    "imageUrl": "https://m.media-amazon.com/images/I/41oIoXZ80ZL._SL300_.jpg",
+    "sort": 504,
+    "active": true
+  },
+  {
+    "id": "y06",
+    "store": "Amazon Fresh",
+    "section": "Pantry",
+    "name": "Pasta",
+    "imageUrl": "https://m.media-amazon.com/images/I/410ymBds87L._SL300_.jpg",
+    "sort": 506,
+    "active": true
+  },
+  {
+    "id": "y07",
+    "store": "Amazon Fresh",
+    "section": "Pantry",
+    "name": "Pasta sauce",
+    "imageUrl": "https://m.media-amazon.com/images/I/71ZMZeP%2B61L._SL300_.jpg",
+    "sort": 507,
+    "active": true
+  },
+  {
+    "id": "y08",
+    "store": "Amazon Fresh",
+    "section": "Pantry",
+    "name": "Olive oil",
+    "imageUrl": "https://m.media-amazon.com/images/I/71xsbul4RBL._SL300_.jpg",
+    "sort": 508,
+    "active": true
+  },
+  {
+    "id": "y09",
+    "store": "Amazon Fresh",
+    "section": "Pantry",
+    "name": "Lemon juice",
+    "imageUrl": "https://m.media-amazon.com/images/I/411HoeyQ7ML._SL300_.jpg",
+    "sort": 509,
+    "active": true
+  },
+  {
+    "id": "y10",
+    "store": "Amazon Fresh",
+    "section": "Pantry",
+    "name": "Olives",
+    "imageUrl": "https://m.media-amazon.com/images/I/51UX5AtuCCL._SL300_.jpg",
+    "sort": 510,
+    "active": true
+  },
+  {
+    "id": "y11",
+    "store": "Amazon Fresh",
+    "section": "Pantry",
+    "name": "Cornichons",
+    "imageUrl": "https://m.media-amazon.com/images/I/61Vmq9XXY6L._SL300_.jpg",
+    "sort": 511,
+    "active": true
+  },
+  {
+    "id": "y12",
+    "store": "Amazon Fresh",
+    "section": "Pantry",
+    "name": "Ponzu",
+    "imageUrl": "https://m.media-amazon.com/images/I/31MX9T6PypL._SL300_.jpg",
+    "sort": 512,
+    "active": true
+  },
+  {
+    "id": "s01",
+    "store": "Amazon Fresh",
+    "section": "Snacks",
+    "name": "Hummus snack packs",
+    "imageUrl": "https://m.media-amazon.com/images/I/41BP0HkdtAL._SL300_.jpg",
+    "sort": 601,
+    "active": true
+  },
+  {
+    "id": "s02",
+    "store": "Amazon Fresh",
+    "section": "Snacks",
+    "name": "Crackers or chips",
+    "imageUrl": "https://m.media-amazon.com/images/I/71k-iyceolL._SL300_.jpg",
+    "sort": 602,
+    "active": true
+  },
+  {
+    "id": "s03",
+    "store": "Amazon Fresh",
+    "section": "Snacks",
+    "name": "Almonds or pistachios",
+    "imageUrl": "https://m.media-amazon.com/images/I/51%2BXAcbhhVL._SL300_.jpg",
+    "sort": 603,
+    "active": true
+  },
+  {
+    "id": "s04",
+    "store": "Amazon Fresh",
+    "section": "Snacks",
+    "name": "Protein bars",
+    "imageUrl": "https://m.media-amazon.com/images/I/61RQiIT5RPL._SL300_.jpg",
+    "sort": 604,
+    "active": true
+  },
+  {
+    "id": "s05",
+    "store": "Amazon Fresh",
+    "section": "Snacks",
+    "name": "Gummy bears",
+    "imageUrl": "https://m.media-amazon.com/images/I/41ULm-A8gvL._SL300_.jpg",
+    "sort": 605,
+    "active": true
+  },
+  {
+    "id": "s06",
+    "store": "Amazon Fresh",
+    "section": "Snacks",
+    "name": "Ice cream bars",
+    "imageUrl": "https://m.media-amazon.com/images/I/51qBEPgApaL._SL300_.jpg",
+    "sort": 606,
+    "active": true
+  },
+  {
+    "id": "n01",
+    "store": "Netcost",
+    "section": "Bread",
+    "name": "Borodinsky bread",
+    "sort": 10,
+    "active": true
+  },
+  {
+    "id": "n02",
+    "store": "Netcost",
+    "section": "Dairy",
+    "name": "Kefir",
+    "sort": 20,
+    "active": true
+  },
+  {
+    "id": "n03",
+    "store": "Netcost",
+    "section": "Deli",
+    "name": "Doktorskaya",
+    "size": "about 0.5 lb",
+    "sort": 30,
+    "active": true
+  },
+  {
+    "id": "n04",
+    "store": "Netcost",
+    "section": "Frozen",
+    "name": "Pelmeni",
+    "sort": 40,
+    "active": true
+  },
+  {
+    "id": "n05",
+    "store": "Netcost",
+    "section": "Frozen",
+    "name": "Vareniki (sweet cheese or cherry)",
+    "sort": 50,
+    "active": true
+  },
+  {
+    "id": "n06",
+    "store": "Netcost",
+    "section": "Pantry",
+    "name": "Buckwheat (kasha)",
+    "sort": 60,
+    "active": true
+  },
+  {
+    "id": "n07",
+    "store": "Netcost",
+    "section": "Pantry",
+    "name": "Riga sprats",
+    "sort": 70,
+    "active": true
+  },
+  {
+    "id": "n08",
+    "store": "Netcost",
+    "section": "Pantry",
+    "name": "Sour pickles",
+    "sort": 80,
+    "active": true
+  }
+]
