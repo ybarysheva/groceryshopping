@@ -63,11 +63,11 @@ export function ToastView({
   );
 }
 
-export function LoadState({ error, onRetry }: { error: boolean; onRetry: () => void }) {
+export function LoadState({ error, onRetry }: { error: string | null; onRetry: () => void }) {
   if (error) {
     return (
       <div className="card state" role="alert">
-        <p>Couldn&apos;t load the list. Check your connection and try again.</p>
+        <p>{error}</p>
         <button type="button" className="btn" onClick={onRetry}>
           Retry
         </button>

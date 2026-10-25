@@ -45,7 +45,8 @@ const REFRESH_MS = 30_000;
  */
 export function useList() {
   const [data, setData] = useState<ListData | null>(null);
-  const [loadError, setLoadError] = useState(false);
+  // null = no error; otherwise the message to show (the server's, when it sent one).
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [saveState, setSaveState] = useState<SaveState>("idle");
   const [toast, setToast] = useState<Toast>(null);
 
@@ -66,14 +67,14 @@ export function useList() {
     if (res.ok) {
       hasData.current = true;
       setData(res.data);
-      setLoadError(false);
+      setLoadError(null);
     } else if (!hasData.current) {
-      setLoadError(true);
+      setLoadError(res.error || "Couldn't load the list. Check your connection and try again.");
     }
   }, []);
 
   const retry = useCallback(() => {
-    setLoadError(false);
+    setLoadError(null);
     void load();
   }, [load]);
 
