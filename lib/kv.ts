@@ -23,14 +23,23 @@ export interface KV {
   exec(ops: Op[]): Promise<void>;
 }
 
+// With automaticDeserialization off, Upstash returns HGETALL as a flat [field, value, ...] array.
+function toRecord(raw: Record<string, string> | string[] | null): Record<string, string> {
+  if (!raw) return {};
+  if (!Array.isArray(raw)) return raw;
+  const out: Record<string, string> = {};
+  for (let i = 0; i + 1 < raw.length; i += 2) out[raw[i]] = raw[i + 1];
+  return out;
+}
+
 class RedisKV implements KV {
   constructor(private redis: Redis) {}
 
   async hgetallMany(keys: string[]) {
     const tx = this.redis.multi();
     for (const key of keys) tx.hgetall(key);
-    const results = (await tx.exec()) as (Record<string, string> | null)[];
-    return results.map((r) => r ?? {});
+    const results = (await tx.exec()) as (Record<string, string> | string[] | null)[];
+    return results.map(toRecord);
   }
 
   async hget(key: string, field: string) {
