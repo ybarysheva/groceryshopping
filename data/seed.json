@@ -525,7 +525,15 @@
     "store": "Netcost",
     "section": "Bread",
     "name": "Borodinsky bread",
-    "sort": 10,
+    "sort": 101,
+    "active": true
+  },
+  {
+    "id": "n10",
+    "store": "Netcost",
+    "section": "Bread",
+    "name": "Darnitsky bread",
+    "sort": 102,
     "active": true
   },
   {
@@ -533,7 +541,31 @@
     "store": "Netcost",
     "section": "Dairy",
     "name": "Kefir",
-    "sort": 20,
+    "sort": 201,
+    "active": true
+  },
+  {
+    "id": "n11",
+    "store": "Netcost",
+    "section": "Dairy",
+    "name": "Tvorog (farmer cheese)",
+    "sort": 202,
+    "active": true
+  },
+  {
+    "id": "n12",
+    "store": "Netcost",
+    "section": "Dairy",
+    "name": "Ryazhenka",
+    "sort": 203,
+    "active": true
+  },
+  {
+    "id": "n13",
+    "store": "Netcost",
+    "section": "Dairy",
+    "name": "Syrki (glazed curd bars)",
+    "sort": 204,
     "active": true
   },
   {
@@ -542,7 +574,77 @@
     "section": "Deli",
     "name": "Doktorskaya",
     "size": "about 0.5 lb",
-    "sort": 30,
+    "sort": 301,
+    "active": true
+  },
+  {
+    "id": "n14",
+    "store": "Netcost",
+    "section": "Deli",
+    "name": "Old Kiev salami",
+    "size": "about 0.5 lb",
+    "sort": 302,
+    "active": true
+  },
+  {
+    "id": "n15",
+    "store": "Netcost",
+    "section": "Deli",
+    "name": "Kabanosy",
+    "size": "about 1 lb",
+    "sort": 303,
+    "active": true
+  },
+  {
+    "id": "n16",
+    "store": "Netcost",
+    "section": "Deli",
+    "name": "Sardelki",
+    "size": "about 1 lb",
+    "sort": 304,
+    "active": true
+  },
+  {
+    "id": "n17",
+    "store": "Netcost",
+    "section": "Deli",
+    "name": "Knockwurst",
+    "size": "about 1 lb",
+    "sort": 305,
+    "active": true
+  },
+  {
+    "id": "n18",
+    "store": "Netcost",
+    "section": "Deli",
+    "name": "Korolevsky smoked cheese",
+    "sort": 306,
+    "active": true
+  },
+  {
+    "id": "n19",
+    "store": "Netcost",
+    "section": "Meat and fish",
+    "name": "Duck legs",
+    "size": "about 2 lb",
+    "sort": 401,
+    "active": true
+  },
+  {
+    "id": "n20",
+    "store": "Netcost",
+    "section": "Meat and fish",
+    "name": "Herring fillets in oil",
+    "sort": 402,
+    "active": true
+  },
+  {
+    "id": "n21",
+    "store": "Netcost",
+    "section": "Meat and fish",
+    "name": "Hot-smoked mackerel",
+    "size": "about 1 lb",
+    "sort": 403,
     "active": true
   },
   {
@@ -550,15 +652,95 @@
     "store": "Netcost",
     "section": "Frozen",
     "name": "Pelmeni",
-    "sort": 40,
+    "sort": 501,
     "active": true
   },
   {
     "id": "n05",
     "store": "Netcost",
     "section": "Frozen",
-    "name": "Vareniki (sweet cheese or cherry)",
-    "sort": 50,
+    "name": "Vareniki, sweet cheese",
+    "sort": 502,
+    "active": true
+  },
+  {
+    "id": "n09",
+    "store": "Netcost",
+    "section": "Frozen",
+    "name": "Vareniki, cherry",
+    "sort": 503,
+    "active": true
+  },
+  {
+    "id": "n22",
+    "store": "Netcost",
+    "section": "Frozen",
+    "name": "Syrniki",
+    "sort": 504,
+    "active": true
+  },
+  {
+    "id": "n23",
+    "store": "Netcost",
+    "section": "Prepared foods",
+    "name": "Olivier salad",
+    "sort": 601,
+    "active": true
+  },
+  {
+    "id": "n24",
+    "store": "Netcost",
+    "section": "Prepared foods",
+    "name": "Vinegret",
+    "sort": 602,
+    "active": true
+  },
+  {
+    "id": "n25",
+    "store": "Netcost",
+    "section": "Prepared foods",
+    "name": "Green borsch",
+    "sort": 603,
+    "active": true
+  },
+  {
+    "id": "n26",
+    "store": "Netcost",
+    "section": "Prepared foods",
+    "name": "Blini",
+    "sort": 604,
+    "active": true
+  },
+  {
+    "id": "n08",
+    "store": "Netcost",
+    "section": "Pickles and condiments",
+    "name": "Sour pickles",
+    "sort": 701,
+    "active": true
+  },
+  {
+    "id": "n27",
+    "store": "Netcost",
+    "section": "Pickles and condiments",
+    "name": "Pickled cherry tomatoes",
+    "sort": 702,
+    "active": true
+  },
+  {
+    "id": "n28",
+    "store": "Netcost",
+    "section": "Pickles and condiments",
+    "name": "Sauerkraut",
+    "sort": 703,
+    "active": true
+  },
+  {
+    "id": "n29",
+    "store": "Netcost",
+    "section": "Pickles and condiments",
+    "name": "Russian mustard",
+    "sort": 704,
     "active": true
   },
   {
@@ -566,7 +748,7 @@
     "store": "Netcost",
     "section": "Pantry",
     "name": "Buckwheat (kasha)",
-    "sort": 60,
+    "sort": 801,
     "active": true
   },
   {
@@ -574,15 +756,95 @@
     "store": "Netcost",
     "section": "Pantry",
     "name": "Riga sprats",
-    "sort": 70,
+    "sort": 802,
     "active": true
   },
   {
-    "id": "n08",
+    "id": "n30",
     "store": "Netcost",
     "section": "Pantry",
-    "name": "Sour pickles",
-    "sort": 80,
+    "name": "Salmon pâté with dill",
+    "sort": 803,
+    "active": true
+  },
+  {
+    "id": "n31",
+    "store": "Netcost",
+    "section": "Pantry",
+    "name": "Sunflower oil, unrefined",
+    "sort": 804,
+    "active": true
+  },
+  {
+    "id": "n32",
+    "store": "Netcost",
+    "section": "Pantry",
+    "name": "Black tea",
+    "sort": 805,
+    "active": true
+  },
+  {
+    "id": "n33",
+    "store": "Netcost",
+    "section": "Snacks and sweets",
+    "name": "Sukhariki",
+    "sort": 901,
+    "active": true
+  },
+  {
+    "id": "n34",
+    "store": "Netcost",
+    "section": "Snacks and sweets",
+    "name": "Chanterelle potato chips",
+    "sort": 902,
+    "active": true
+  },
+  {
+    "id": "n35",
+    "store": "Netcost",
+    "section": "Snacks and sweets",
+    "name": "Semechki (sunflower seeds)",
+    "sort": 903,
+    "active": true
+  },
+  {
+    "id": "n36",
+    "store": "Netcost",
+    "section": "Snacks and sweets",
+    "name": "Sushki",
+    "sort": 904,
+    "active": true
+  },
+  {
+    "id": "n37",
+    "store": "Netcost",
+    "section": "Snacks and sweets",
+    "name": "Pryaniki",
+    "sort": 905,
+    "active": true
+  },
+  {
+    "id": "n38",
+    "store": "Netcost",
+    "section": "Snacks and sweets",
+    "name": "Zefir",
+    "sort": 906,
+    "active": true
+  },
+  {
+    "id": "n39",
+    "store": "Netcost",
+    "section": "Snacks and sweets",
+    "name": "Halva",
+    "sort": 907,
+    "active": true
+  },
+  {
+    "id": "n40",
+    "store": "Netcost",
+    "section": "Drinks",
+    "name": "Kvass",
+    "sort": 1001,
     "active": true
   }
 ]
