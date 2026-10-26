@@ -36,6 +36,13 @@ export type Round = {
   date: string;
   notes: { store: Store; item: string; text: string }[];
   adds: { store: AddStore; text: string }[];
+  /** Missing on rounds saved before removals were tracked. */
+  removed?: { store: Store; item: string }[];
+};
+
+/** An item taken off this round's order (the × on the shared page). Cleared by a new round. */
+export type Removal = {
+  removedAt: string;
 };
 
 export type ListStatus = "draft" | "final";
@@ -43,6 +50,7 @@ export type ListStatus = "draft" | "final";
 export type ListData = {
   items: Item[];
   notes: Record<string, Note>;
+  removed: Record<string, Removal>;
   adds: Add[];
   status: ListStatus;
   finalizedAt: string | null;

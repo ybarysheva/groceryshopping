@@ -9,6 +9,7 @@ import {
   type ListData,
   type ListStatus,
   type Note,
+  type Removal,
   type Round,
 } from "./types";
 import type { ImportEntry, ItemFields } from "./validate";
@@ -20,6 +21,7 @@ export const KEYS = {
   adds: "g:adds",
   meta: "g:meta",
   rounds: "g:rounds",
+  removed: "g:removed",
 } as const;
 
 export class UserError extends Error {
@@ -43,22 +45,28 @@ function parseAll<T>(hash: Record<string, string>): T[] {
   return out;
 }
 
+function parseMap<T>(hash: Record<string, string>): Record<string, T> {
+  const out: Record<string, T> = {};
+  for (const [id, value] of Object.entries(hash)) {
+    try {
+      out[id] = JSON.parse(value) as T;
+    } catch {}
+  }
+  return out;
+}
+
 export async function readList(): Promise<ListData> {
-  const [items, notes, adds, meta] = await getKV().hgetallMany([
+  const [items, notes, adds, meta, removed] = await getKV().hgetallMany([
     KEYS.items,
     KEYS.notes,
     KEYS.adds,
     KEYS.meta,
+    KEYS.removed,
   ]);
-  const noteMap: Record<string, Note> = {};
-  for (const [id, value] of Object.entries(notes)) {
-    try {
-      noteMap[id] = JSON.parse(value) as Note;
-    } catch {}
-  }
   return {
     items: parseAll<Item>(items),
-    notes: noteMap,
+    notes: parseMap<Note>(notes),
+    removed: parseMap<Removal>(removed),
     adds: parseAll<Add>(adds),
     status: meta.status === "final" ? "final" : "draft",
     finalizedAt: meta.status === "final" ? meta.finalizedAt || null : null,
@@ -72,7 +80,7 @@ async function readItems(): Promise<Item[]> {
 
 async function requireItem(id: string): Promise<Item> {
   const raw = await getKV().hget(KEYS.items, id);
-  if (!raw) throw new UserError("That item was removed from the list.", 404);
+  if (!raw) throw new UserError("That item was deleted from the list.", 404);
   return JSON.parse(raw) as Item;
 }
 
@@ -87,6 +95,19 @@ export async function setNote(itemId: string, text: string): Promise<Note | null
   const note: Note = { text, updatedAt: new Date().toISOString() };
   await getKV().exec([{ type: "hset", key: KEYS.notes, values: { [itemId]: JSON.stringify(note) } }]);
   return note;
+}
+
+// ---- Removals (one field per item, like notes)
+
+export async function setRemoved(itemId: string, removed: boolean): Promise<Removal | null> {
+  await requireItem(itemId);
+  if (!removed) {
+    await getKV().exec([{ type: "hdel", key: KEYS.removed, fields: [itemId] }]);
+    return null;
+  }
+  const removal: Removal = { removedAt: new Date().toISOString() };
+  await getKV().exec([{ type: "hset", key: KEYS.removed, values: { [itemId]: JSON.stringify(removal) } }]);
+  return removal;
 }
 
 // ---- Adds
@@ -173,7 +194,7 @@ export async function createItem(fields: ItemFields): Promise<Item> {
 export async function updateItem(id: string, patch: Partial<ItemFields>): Promise<Item> {
   const items = await readItems();
   const current = items.find((i) => i.id === id);
-  if (!current) throw new UserError("That item was removed from the list.", 404);
+  if (!current) throw new UserError("That item was deleted from the list.", 404);
   const item = compactItem({ ...current, ...patch, id });
   if ("price" in patch) item.priceAt = priceStamp(item.price, current, new Date().toISOString());
   if (!item.priceAt) delete item.priceAt;
@@ -186,6 +207,7 @@ export async function deleteItem(id: string): Promise<void> {
   await getKV().exec([
     { type: "hdel", key: KEYS.items, fields: [id] },
     { type: "hdel", key: KEYS.notes, fields: [id] },
+    { type: "hdel", key: KEYS.removed, fields: [id] },
   ]);
 }
 
@@ -277,6 +299,7 @@ export async function applyImport(entries: ImportEntry[], basis: string): Promis
     { type: "del", key: KEYS.items },
     { type: "hset", key: KEYS.items, values },
     { type: "hdel", key: KEYS.notes, fields: plan.removed.map((r) => r.item.id) },
+    { type: "hdel", key: KEYS.removed, fields: plan.removed.map((r) => r.item.id) },
   ]);
   return { ...plan, basis: fingerprint(next) };
 }
@@ -287,6 +310,7 @@ export async function startRound(): Promise<Round | null> {
   const data = await readList();
   const byId = new Map(data.items.map((i) => [i.id, i]));
   const noteIds = Object.keys(data.notes);
+  const removedIds = Object.keys(data.removed);
   const round: Round = {
     id: randomUUID(),
     date: new Date().toISOString(),
@@ -297,13 +321,18 @@ export async function startRound(): Promise<Round | null> {
     adds: [...data.adds]
       .sort((a, b) => a.createdAt.localeCompare(b.createdAt))
       .map((a) => ({ store: a.store, text: a.text })),
+    removed: removedIds.flatMap((id) => {
+      const item = byId.get(id);
+      return item ? [{ store: item.store, item: itemLabel(item) }] : [];
+    }),
   };
-  const hasContent = round.notes.length > 0 || round.adds.length > 0;
+  const hasContent = round.notes.length > 0 || round.adds.length > 0 || (round.removed?.length ?? 0) > 0;
   // Delete only the fields that were archived, so a note or add saved this instant survives.
   await getKV().exec([
     ...(hasContent ? [{ type: "lpush", key: KEYS.rounds, value: JSON.stringify(round) } as Op] : []),
     { type: "hdel", key: KEYS.notes, fields: noteIds },
     { type: "hdel", key: KEYS.adds, fields: data.adds.map((a) => a.id) },
+    { type: "hdel", key: KEYS.removed, fields: removedIds },
     { type: "hset", key: KEYS.meta, values: { status: "draft", finalizedAt: "" } },
   ]);
   return hasContent ? round : null;

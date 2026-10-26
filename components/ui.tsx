@@ -185,7 +185,7 @@ export function NotesSummary({
         <section className="card" key={s.store} aria-label={s.store}>
           <div className="card-head">
             <H>{s.store === "Either" ? "Either store" : s.store}</H>
-            <span className="mono muted">{s.notes.length + s.adds.length}</span>
+            <span className="mono muted">{s.notes.length + s.adds.length + s.removed.length}</span>
           </div>
           <ul className="rows">
             {s.notes.map(({ item, note }) => (
@@ -201,6 +201,14 @@ export function NotesSummary({
                 <p className="row-name">
                   {a.text}
                   <span className="tag">Added</span>
+                </p>
+              </li>
+            ))}
+            {s.removed.map((item) => (
+              <li className="row-text" key={`r-${item.id}`} style={{ display: "block" }}>
+                <p className="row-name removed-name">
+                  {itemLabel(item)}
+                  <span className="tag tag-removed">Removed</span>
                 </p>
               </li>
             ))}

@@ -2,7 +2,7 @@
 
 A shared, phone-friendly grocery list for Amazon Fresh and Netcost Market.
 
-- `/` is the shared page. Anyone with the link can leave a note on an item, add something, or remove an item with its × button. No sign-in. Removing hides the item (the same as Hide on `/edit`), with Undo in the toast; bring it back with Show on `/edit`.
+- `/` is the shared page. Anyone with the link can leave a note on an item, add something, or remove an item with its × button. No sign-in. A removed item moves to a **Removed** card at the bottom of its store tab (with **Put back**), and is listed in the export as "Removed (don't order)" so Claude knows not to buy it. Removals last for the round only; the item itself isn't changed.
 - `/edit` is where the list is managed: edit items, import a new list, mark it final, copy it for Claude, start a new round.
 - `/api/export` is the read-only order that Claude reads to place the orders.
 
@@ -49,7 +49,8 @@ On `/edit` you can:
 - **Import list**, the usual way to change the list each round (see below).
 - **Mark as final** / back to draft. The status and time show at the top and in the export.
 - **Copy for Claude**: a ready-to-paste message with the status, the live export URL and the full order text.
-- **Start a new round**: saves the current notes and adds under Past rounds with today's date, clears them, and sets the status back to draft. Items stay.
+- **Start a new round**: saves the current notes, adds and removals under Past rounds with today's date, clears them, and sets the status back to draft. Items stay, and removed items come back onto the list.
+- **Hide** (on an item) is different from the shared page's ×: it takes the item off the list until you Show it again, and isn't reported to Claude as a removal. Items removed this round show a "Removed" tag with **Put back**.
 - **Past rounds**: read-only, newest first.
 
 ### Import format
@@ -85,10 +86,11 @@ Paste a JSON array of items:
     {
       "store": "Amazon Fresh",
       "items": [{"store": "Amazon Fresh", "section": "Produce", "name": "Blueberries", "size": null, "price": "$4.99", "priceAt": "2026-10-25T21:50:00.000Z", "note": "get 2"}],
-      "adds": [{"store": "Amazon Fresh", "text": "Milk"}]
+      "adds": [{"store": "Amazon Fresh", "text": "Milk"}],
+      "removed": [{"store": "Amazon Fresh", "section": "Meat and fish", "name": "Steak", "size": "about 1.5 lb"}]
     },
-    {"store": "Netcost", "items": [], "adds": []},
-    {"store": "Either", "items": [], "adds": [{"store": "Either", "text": "Paper towels"}]}
+    {"store": "Netcost", "items": [], "adds": [], "removed": []},
+    {"store": "Either", "items": [], "adds": [{"store": "Either", "text": "Paper towels"}], "removed": []}
   ]
 }
 ```
@@ -106,6 +108,8 @@ Meat and fish
 - Chicken thighs, boneless skinless, about 6 lb (2 packs)
 Added
 - Milk
+Removed (don't order)
+- Steak, about 1.5 lb
 
 NETCOST
 ...
@@ -114,7 +118,7 @@ EITHER STORE
 - Paper towels
 ```
 
-- Only shown (active) items. Price and note appear inline in parentheses, price first, separated by `;`. Adds go under "Added" in their store; "Either" adds get their own block. A store with nothing on it is left out.
+- Only items still on the order. Price and note appear inline in parentheses, price first, separated by `;`. Adds go under "Added" in their store; "Either" adds get their own block. Items taken off with × go under "Removed (don't order)" in their store. A store with nothing on it is left out.
 - Times are Brooklyn time (America/New_York). A draft reads `(status: draft)`.
 - `Cache-Control: no-store`, `Access-Control-Allow-Origin: *`.
 
@@ -128,7 +132,8 @@ One hash field per record, so concurrent writes to different items, notes or add
 | `g:notes` | hash | item id → `{text, updatedAt}` |
 | `g:adds` | hash | add id (client UUID) → `{id, store, text, createdAt}` |
 | `g:meta` | hash | `status`, `finalizedAt`, `seededAt` |
-| `g:rounds` | list | newest first: `{id, date, notes[{store,item,text}], adds[{store,text}]}` |
+| `g:removed` | hash | item id → `{removedAt}`: taken off this round's order |
+| `g:rounds` | list | newest first: `{id, date, notes[{store,item,text}], adds[{store,text}], removed[{store,item}]}` |
 | `g:rl:<ip>:<minute>` | counter | write rate limit, expires after 70s |
 
 - Item edits send only the changed fields and the server merges them.

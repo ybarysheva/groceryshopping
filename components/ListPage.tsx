@@ -1,8 +1,18 @@
 "use client";
 
 import { useCallback, useId, useMemo, useState } from "react";
-import { addsForStore, groupBySection, itemLabel } from "@/lib/format";
-import { ADD_STORES, LIMITS, type Add, type AddStore, type Item, type ListData, type Note, type Store } from "@/lib/types";
+import { addsForStore, groupBySection, itemLabel, orderItems, removedItems } from "@/lib/format";
+import {
+  ADD_STORES,
+  LIMITS,
+  type Add,
+  type AddStore,
+  type Item,
+  type ListData,
+  type Note,
+  type Removal,
+  type Store,
+} from "@/lib/types";
 import { LoadState, NotesSummary, SaveStatus, Thumb, ToastView } from "./ui";
 import { api, uuid, useList } from "./useList";
 
@@ -35,12 +45,17 @@ export default function ListPage() {
 
   const counts = useMemo(() => {
     if (!data) return null;
-    const active = data.items.filter((i) => i.active);
+    const onOrder = orderItems(data);
     const either = data.adds.filter((a) => a.store === "Either").length;
     const per = (s: Store) =>
-      active.filter((i) => i.store === s).length + data.adds.filter((a) => a.store === s).length + either;
-    const notes = active.filter((i) => data.notes[i.id]).length;
-    return { "Amazon Fresh": per("Amazon Fresh"), Netcost: per("Netcost"), notes: notes + data.adds.length };
+      onOrder.filter((i) => i.store === s).length + data.adds.filter((a) => a.store === s).length + either;
+    const notes = onOrder.filter((i) => data.notes[i.id]).length;
+    const removed = removedItems(data, "Amazon Fresh").length + removedItems(data, "Netcost").length;
+    return {
+      "Amazon Fresh": per("Amazon Fresh"),
+      Netcost: per("Netcost"),
+      notes: notes + data.adds.length + removed,
+    };
   }, [data]);
 
   // ---- Writes
@@ -70,28 +85,33 @@ export default function ListPage() {
       request: () => api("DELETE", `/api/adds/${add.id}`),
     });
 
-  // Removing hides the item (same as Hide on /edit), so a mis-tap can be undone and
-  // the item's photo, note and place in the list are kept.
-  const setActive = (item: Item, active: boolean) =>
-    mutate({
-      apply: (d) => ({ ...d, items: d.items.map((i) => (i.id === item.id ? { ...i, active } : i)) }),
-      undo: (d) => ({ ...d, items: d.items.map((i) => (i.id === item.id ? { ...i, active: !active } : i)) }),
-      request: () => api("PATCH", `/api/items/${item.id}`, { active }),
+  // Removing takes the item off this round's order and records it, so the export can tell
+  // Claude not to buy it. A new round clears removals; the item itself is untouched.
+  const setRemoved = (item: Item, removed: boolean) => {
+    const previous = data?.removed[item.id];
+    const removal: Removal = { removedAt: new Date().toISOString() };
+    return mutate({
+      apply: (d) => ({ ...d, removed: withEntry(d.removed, item.id, removed ? removal : undefined) }),
+      undo: (d) => ({ ...d, removed: withEntry(d.removed, item.id, previous) }),
+      request: () => api(removed ? "PUT" : "DELETE", `/api/removed/${item.id}`),
     });
+  };
 
   const removeItem = async (item: Item) => {
     if (editingNote === item.id) setEditingNote(null);
-    const ok = await setActive(item, false);
-    if (ok) showToast("info", `Removed ${item.name}.`, { label: "Undo", run: () => void setActive(item, true) });
+    const ok = await setRemoved(item, true);
+    if (ok) showToast("info", `Removed ${item.name}.`, { label: "Undo", run: () => void setRemoved(item, false) });
   };
+
+  const putBack = (item: Item) => setRemoved(item, false);
 
   const saveNote = (item: Item, text: string) => {
     const previous = data?.notes[item.id];
     const note: Note = { text, updatedAt: new Date().toISOString() };
     setEditingNote(null);
     return mutate({
-      apply: (d) => ({ ...d, notes: withNote(d.notes, item.id, text ? note : undefined) }),
-      undo: (d) => ({ ...d, notes: withNote(d.notes, item.id, previous) }),
+      apply: (d) => ({ ...d, notes: withEntry(d.notes, item.id, text ? note : undefined) }),
+      undo: (d) => ({ ...d, notes: withEntry(d.notes, item.id, previous) }),
       request: () =>
         text ? api("PUT", `/api/notes/${item.id}`, { text }) : api("DELETE", `/api/notes/${item.id}`),
     });
@@ -149,6 +169,7 @@ export default function ListPage() {
               onSaveNote={saveNote}
               onRemoveAdd={removeAdd}
               onRemoveItem={removeItem}
+              onPutBack={putBack}
             />
           )}
         </div>
@@ -169,9 +190,9 @@ function slug(t: Tab) {
   return t.toLowerCase().replace(/[^a-z]+/g, "-");
 }
 
-function withNote(notes: Record<string, Note>, id: string, note: Note | undefined) {
-  const next = { ...notes };
-  if (note) next[id] = note;
+function withEntry<T>(map: Record<string, T>, id: string, value: T | undefined) {
+  const next = { ...map };
+  if (value) next[id] = value;
   else delete next[id];
   return next;
 }
@@ -286,6 +307,7 @@ function StoreList({
   onSaveNote,
   onRemoveAdd,
   onRemoveItem,
+  onPutBack,
 }: {
   data: ListData;
   store: Store;
@@ -294,8 +316,10 @@ function StoreList({
   onSaveNote: (item: Item, text: string) => void;
   onRemoveAdd: (add: Add) => void;
   onRemoveItem: (item: Item) => void;
+  onPutBack: (item: Item) => void;
 }) {
-  const sections = groupBySection(data.items.filter((i) => i.store === store && i.active));
+  const sections = groupBySection(orderItems(data).filter((i) => i.store === store));
+  const removed = removedItems(data, store);
   const adds = [...addsForStore(data.adds, store), ...addsForStore(data.adds, "Either")];
 
   return (
@@ -327,7 +351,7 @@ function StoreList({
         </section>
       )}
 
-      {sections.length === 0 && adds.length === 0 && (
+      {sections.length === 0 && adds.length === 0 && removed.length === 0 && (
         <div className="card empty">
           <p>Nothing on the {store} list yet.</p>
         </div>
@@ -355,6 +379,34 @@ function StoreList({
           </ul>
         </section>
       ))}
+
+      {removed.length > 0 && (
+        <section className="card" aria-labelledby={`removed-head-${store}`}>
+          <div className="card-head">
+            <h2 id={`removed-head-${store}`}>Removed</h2>
+            <span className="mono muted">{removed.length}</span>
+          </div>
+          <ul className="rows">
+            {removed.map((item) => (
+              <li className="row" key={item.id}>
+                <Thumb src={item.imageUrl} name={item.name} />
+                <div className="row-main">
+                  <p className="row-name removed-name">{item.name}</p>
+                  <p className="row-sub">Not ordering this time</p>
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-sm"
+                  onClick={() => onPutBack(item)}
+                  aria-label={`Put back ${item.name}`}
+                >
+                  Put back
+                </button>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 }

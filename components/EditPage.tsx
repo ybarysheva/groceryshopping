@@ -141,6 +141,19 @@ export default function EditPage() {
     if (!ok) setEditing({ id: item.id, draft });
   };
 
+  const putBack = (item: Item) => {
+    const previous = data?.removed[item.id];
+    return mutate({
+      apply: (d) => {
+        const removed = { ...d.removed };
+        delete removed[item.id];
+        return { ...d, removed };
+      },
+      undo: (d) => (previous ? { ...d, removed: { ...d.removed, [item.id]: previous } } : d),
+      request: () => api("DELETE", `/api/removed/${item.id}`),
+    });
+  };
+
   const removeItem = (item: Item) => {
     const note = data?.notes[item.id];
     setEditing(null);
@@ -204,9 +217,15 @@ export default function EditPage() {
 
   const startRound = async () => {
     if (!data) return;
-    const before = { notes: data.notes, adds: data.adds, status: data.status, finalizedAt: data.finalizedAt };
+    const before = {
+      notes: data.notes,
+      adds: data.adds,
+      removed: data.removed,
+      status: data.status,
+      finalizedAt: data.finalizedAt,
+    };
     const ok = await mutate({
-      apply: (d) => ({ ...d, notes: {}, adds: [], status: "draft", finalizedAt: null }),
+      apply: (d) => ({ ...d, notes: {}, adds: [], removed: {}, status: "draft", finalizedAt: null }),
       undo: (d) => ({ ...d, ...before }),
       request: () => api("POST", "/api/rounds"),
     });
@@ -311,6 +330,7 @@ export default function EditPage() {
               onSave={saveDraft}
               onDelete={removeItem}
               onToggleActive={(item) => patchItem(item, { active: !item.active })}
+              onPutBack={putBack}
             />
 
             <h2 className="section-title">Add item</h2>
@@ -352,6 +372,7 @@ function ItemsEditor({
   onSave,
   onDelete,
   onToggleActive,
+  onPutBack,
 }: {
   data: ListData;
   editing: { id: string; draft: ItemDraft } | null;
@@ -361,6 +382,7 @@ function ItemsEditor({
   onSave: (item: Item, draft: ItemDraft) => void;
   onDelete: (item: Item) => void;
   onToggleActive: (item: Item) => void;
+  onPutBack: (item: Item) => void;
 }) {
   return (
     <>
@@ -393,6 +415,9 @@ function ItemsEditor({
                               <p className="row-name">
                                 {item.name}
                                 {!item.active && <span className="tag">Hidden</span>}
+                                {item.active && data.removed[item.id] && (
+                                  <span className="tag tag-removed">Removed</span>
+                                )}
                               </p>
                               <p className="row-sub">
                                 {item.size ? `${item.size} · ` : ""}
@@ -415,14 +440,25 @@ function ItemsEditor({
                               )}
                             </div>
                             <div className="btn-row" style={{ justifyContent: "flex-end" }}>
-                              <button
-                                type="button"
-                                className="btn btn-sm btn-quiet"
-                                onClick={() => onToggleActive(item)}
-                                aria-label={`${item.active ? "Hide" : "Show"} ${item.name}`}
-                              >
-                                {item.active ? "Hide" : "Show"}
-                              </button>
+                              {item.active && data.removed[item.id] ? (
+                                <button
+                                  type="button"
+                                  className="btn btn-sm btn-quiet"
+                                  onClick={() => onPutBack(item)}
+                                  aria-label={`Put back ${item.name}`}
+                                >
+                                  Put back
+                                </button>
+                              ) : (
+                                <button
+                                  type="button"
+                                  className="btn btn-sm btn-quiet"
+                                  onClick={() => onToggleActive(item)}
+                                  aria-label={`${item.active ? "Hide" : "Show"} ${item.name}`}
+                                >
+                                  {item.active ? "Hide" : "Show"}
+                                </button>
+                              )}
                               {!isEditing && (
                                 <button
                                   type="button"
@@ -878,12 +914,14 @@ function NewRound({ data, onConfirm }: { data: ListData; onConfirm: () => Promis
   const [confirming, setConfirming] = useState(false);
   const notes = Object.keys(data.notes).length;
   const adds = data.adds.length;
+  const removed = Object.keys(data.removed).length;
+  const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
 
   return (
     <section className="card card-pad" aria-label="Start a new round">
       <p>
-        Saves the current notes and adds under Past rounds with today&apos;s date, then clears them and sets the list
-        back to draft. Items stay.
+        Saves the current notes, adds and removals under Past rounds with today&apos;s date, then clears them and
+        sets the list back to draft. Items stay, and removed items come back onto the list.
       </p>
       {!confirming ? (
         <div className="btn-row" style={{ marginTop: 12 }}>
@@ -894,8 +932,8 @@ function NewRound({ data, onConfirm }: { data: ListData; onConfirm: () => Promis
       ) : (
         <div className="confirm" role="alertdialog" aria-label="Confirm new round">
           <p>
-            Save {notes} {notes === 1 ? "note" : "notes"} and {adds} {adds === 1 ? "add" : "adds"} to Past rounds and
-            clear them?
+            Save {plural(notes, "note", "notes")}, {plural(adds, "add", "adds")} and{" "}
+            {plural(removed, "removal", "removals")} to Past rounds and clear them?
           </p>
           <div className="btn-row">
             <button
@@ -964,6 +1002,20 @@ function PastRounds({ rounds, error, onRetry }: { rounds: Round[] | null; error:
                 {r.adds.map((a, i) => (
                   <li key={i}>
                     {a.store === "Either" ? "Either store" : a.store} · {a.text}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+          {(r.removed?.length ?? 0) > 0 && (
+            <>
+              <p className="mono muted" style={{ marginTop: 8 }}>
+                Removed
+              </p>
+              <ul>
+                {r.removed?.map((x, i) => (
+                  <li key={i}>
+                    {x.store} · {x.item}
                   </li>
                 ))}
               </ul>

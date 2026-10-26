@@ -66,6 +66,16 @@ export function statusLine(status: ListData["status"], finalizedAt: string | nul
     : status;
 }
 
+/** Shown items still on this round's order. */
+export function orderItems(data: ListData): Item[] {
+  return data.items.filter((i) => i.active && !data.removed[i.id]);
+}
+
+/** Shown items taken off this round's order, for one store. Hidden items aren't removals. */
+export function removedItems(data: ListData, store: AddStore): Item[] {
+  return sortItems(data.items.filter((i) => i.store === store && i.active && data.removed[i.id]));
+}
+
 export type ExportOrder = {
   store: AddStore;
   items: {
@@ -78,6 +88,8 @@ export type ExportOrder = {
     note: string | null;
   }[];
   adds: { store: AddStore; text: string }[];
+  /** Taken off this round's order: don't buy these. */
+  removed: { store: Store; section: string; name: string; size: string | null }[];
 };
 
 export type ExportJson = {
@@ -88,7 +100,7 @@ export type ExportJson = {
 };
 
 export function buildExportJson(data: ListData, now = new Date()): ExportJson {
-  const active = data.items.filter((i) => i.active);
+  const active = orderItems(data);
   const orders: ExportOrder[] = [...STORES, "Either" as const].map((store) => ({
     store,
     items: groupBySection(active.filter((i) => i.store === store)).flatMap((s) =>
@@ -103,6 +115,12 @@ export function buildExportJson(data: ListData, now = new Date()): ExportJson {
       })),
     ),
     adds: addsForStore(data.adds, store).map((a) => ({ store: a.store, text: a.text })),
+    removed: removedItems(data, store).map((i) => ({
+      store: i.store,
+      section: i.section,
+      name: i.name,
+      size: i.size ?? null,
+    })),
   }));
   return {
     generatedAt: now.toISOString(),
@@ -114,12 +132,13 @@ export function buildExportJson(data: ListData, now = new Date()): ExportJson {
 
 export function buildExportText(data: ListData): string {
   const lines = [`Grocery order (status: ${statusLine(data.status, data.finalizedAt)})`];
-  const active = data.items.filter((i) => i.active);
+  const active = orderItems(data);
 
   for (const store of STORES) {
     const sections = groupBySection(active.filter((i) => i.store === store));
     const adds = addsForStore(data.adds, store);
-    if (sections.length === 0 && adds.length === 0) continue;
+    const removed = removedItems(data, store);
+    if (sections.length === 0 && adds.length === 0 && removed.length === 0) continue;
     lines.push("", store.toUpperCase());
     for (const section of sections) {
       lines.push(section.name);
@@ -132,6 +151,10 @@ export function buildExportText(data: ListData): string {
     if (adds.length > 0) {
       lines.push("Added");
       for (const add of adds) lines.push(`- ${add.text}`);
+    }
+    if (removed.length > 0) {
+      lines.push("Removed (don't order)");
+      for (const item of removed) lines.push(`- ${itemLabel(item)}`);
     }
   }
 
@@ -162,19 +185,21 @@ export type StoreSummary = {
   store: AddStore;
   notes: { item: Item; note: Note }[];
   adds: Add[];
+  removed: Item[];
 };
 
-// Notes on active items plus adds, grouped by store. Used by the "Notes & adds" tab.
+// Notes on items still on the order, adds and removals, grouped by store. Used by the "Notes & adds" tab.
 export function buildSummary(data: ListData): StoreSummary[] {
   return [...STORES, "Either" as const]
     .map((store) => ({
       store,
       notes: sortItems(
-        data.items.filter((i) => i.store === store && i.active && data.notes[i.id]),
+        orderItems(data).filter((i) => i.store === store && data.notes[i.id]),
       ).map((item) => ({ item, note: data.notes[item.id] })),
       adds: addsForStore(data.adds, store),
+      removed: removedItems(data, store),
     }))
-    .filter((s) => s.notes.length > 0 || s.adds.length > 0);
+    .filter((s) => s.notes.length > 0 || s.adds.length > 0 || s.removed.length > 0);
 }
 
 export function summaryText(summary: StoreSummary[]): string {
@@ -185,6 +210,7 @@ export function summaryText(summary: StoreSummary[]): string {
           s.store === "Either" ? "Either store" : s.store,
           ...s.notes.map((n) => `Note: ${itemLabel(n.item)} - ${n.note.text}`),
           ...s.adds.map((a) => `Add: ${a.text}`),
+          ...s.removed.map((i) => `Remove: ${itemLabel(i)}`),
         ].join("\n"),
       )
       .join("\n\n") + "\n"

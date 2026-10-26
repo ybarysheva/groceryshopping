@@ -348,6 +348,16 @@ textarea {
   color: var(--ink);
 }
 
+.removed-name {
+  text-decoration: line-through;
+  text-decoration-color: var(--muted);
+}
+
+.tag-removed {
+  text-decoration: none;
+  display: inline-block;
+}
+
 .row-hidden .row-name,
 .row-hidden .thumb {
   opacity: 0.45;
@@ -363,6 +373,7 @@ textarea {
   color: var(--muted);
   vertical-align: 2px;
   margin-left: 6px;
+  white-space: nowrap;
 }
 
 /* ---- Thumbnails */
