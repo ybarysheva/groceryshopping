@@ -5,6 +5,8 @@
     "section": "Produce",
     "name": "Bananas",
     "imageUrl": "https://m.media-amazon.com/images/I/41JvAoqeMfL._SL300_.jpg",
+    "price": "$1.49",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 101,
     "active": true
   },
@@ -14,6 +16,8 @@
     "section": "Produce",
     "name": "Mandarins",
     "imageUrl": "https://m.media-amazon.com/images/I/51adL1NOCRL._SL300_.jpg",
+    "price": "$4.99",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 102,
     "active": true
   },
@@ -23,6 +27,8 @@
     "section": "Produce",
     "name": "Blackberries",
     "imageUrl": "https://m.media-amazon.com/images/I/41ob68Y9AVL._SL300_.jpg",
+    "price": "$2.63",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 103,
     "active": true
   },
@@ -32,6 +38,8 @@
     "section": "Produce",
     "name": "Raspberries",
     "imageUrl": "https://m.media-amazon.com/images/I/41I2mWqUT9L._SL300_.jpg",
+    "price": "$1.99",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 104,
     "active": true
   },
@@ -41,6 +49,8 @@
     "section": "Produce",
     "name": "Blueberries",
     "imageUrl": "https://m.media-amazon.com/images/I/41Cpd6xf4tL._SL300_.jpg",
+    "price": "$4.47",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 105,
     "active": true
   },
@@ -50,6 +60,8 @@
     "section": "Produce",
     "name": "Avocados",
     "imageUrl": "https://m.media-amazon.com/images/I/317cJaeN8OL._SL300_.jpg",
+    "price": "$1.48 each",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 106,
     "active": true
   },
@@ -59,6 +71,8 @@
     "section": "Produce",
     "name": "Mini cucumbers",
     "imageUrl": "https://m.media-amazon.com/images/I/416elVyMcBL._SL300_.jpg",
+    "price": "$2.08",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 107,
     "active": true
   },
@@ -68,6 +82,8 @@
     "section": "Produce",
     "name": "Sweet mini peppers",
     "imageUrl": "https://m.media-amazon.com/images/I/41lwHY7tMFL._SL300_.jpg",
+    "price": "$2.49",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 108,
     "active": true
   },
@@ -77,6 +93,8 @@
     "section": "Produce",
     "name": "Cherry tomatoes",
     "imageUrl": "https://m.media-amazon.com/images/I/51Dv1g-gxXL._SL300_.jpg",
+    "price": "$5.49",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 109,
     "active": true
   },
@@ -86,6 +104,8 @@
     "section": "Produce",
     "name": "Arugula",
     "imageUrl": "https://m.media-amazon.com/images/I/51fPD4fLBjL._SL300_.jpg",
+    "price": "$3.29",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 110,
     "active": true
   },
@@ -95,6 +115,8 @@
     "section": "Produce",
     "name": "Chopped salad kit",
     "imageUrl": "https://m.media-amazon.com/images/I/41qPLcvBcyL._SL300_.jpg",
+    "price": "$5.69",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 111,
     "active": true
   },
@@ -104,6 +126,8 @@
     "section": "Produce",
     "name": "Broccoli",
     "imageUrl": "https://m.media-amazon.com/images/I/41rgSGZYwAL._SL300_.jpg",
+    "price": "$2.98",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 112,
     "active": true
   },
@@ -113,6 +137,8 @@
     "section": "Produce",
     "name": "Potatoes",
     "imageUrl": "https://m.media-amazon.com/images/I/41rdoirK%2BqL._SL300_.jpg",
+    "price": "$4.99",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 113,
     "active": true
   },
@@ -122,6 +148,8 @@
     "section": "Produce",
     "name": "Onions",
     "imageUrl": "https://m.media-amazon.com/images/I/410t7g4Ks9L._SL300_.jpg",
+    "price": "$1.99",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 114,
     "active": true
   },
@@ -131,6 +159,8 @@
     "section": "Produce",
     "name": "Garlic",
     "imageUrl": "https://m.media-amazon.com/images/I/71OPBXKKLUL._SL300_.jpg",
+    "price": "$0.99",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 115,
     "active": true
   },
@@ -140,6 +170,8 @@
     "section": "Produce",
     "name": "Lemons",
     "imageUrl": "https://m.media-amazon.com/images/I/517HUBZTTlL._SL300_.jpg",
+    "price": "$0.59 each",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 116,
     "active": true
   },
@@ -149,6 +181,8 @@
     "section": "Produce",
     "name": "Dill",
     "imageUrl": "https://m.media-amazon.com/images/I/71OMDVk-cxL._SL300_.jpg",
+    "price": "$2.11",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 117,
     "active": true
   },
@@ -158,6 +192,8 @@
     "section": "Produce",
     "name": "Parsley",
     "imageUrl": "https://m.media-amazon.com/images/I/816IaLdLuLL._SL300_.jpg",
+    "price": "$1.07",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 118,
     "active": true
   },
@@ -168,6 +204,8 @@
     "name": "Chicken thighs, boneless skinless",
     "size": "about 6 lb (2 packs)",
     "imageUrl": "https://m.media-amazon.com/images/I/51-JrA1nnPL._SL300_.jpg",
+    "price": "$23.34 for 2 packs, weight varies",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 201,
     "active": true
   },
@@ -178,6 +216,8 @@
     "name": "Chicken drumsticks",
     "size": "about 5 lb",
     "imageUrl": "https://m.media-amazon.com/images/I/41W4tw726ZL._SL300_.jpg",
+    "price": "$5.16",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 202,
     "active": true
   },
@@ -188,6 +228,8 @@
     "name": "Ground beef",
     "size": "about 2 lb",
     "imageUrl": "https://m.media-amazon.com/images/I/41s3aurjkML._SL300_.jpg",
+    "price": "$18.87, only sold in 3 lb packs",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 203,
     "active": true
   },
@@ -198,6 +240,8 @@
     "name": "Steak",
     "size": "about 1.5 lb",
     "imageUrl": "https://m.media-amazon.com/images/I/71u8HA0P80L._SL300_.jpg",
+    "price": "about $24.00, depends on cut and sales",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 204,
     "active": true
   },
@@ -208,6 +252,8 @@
     "name": "Fresh salmon",
     "size": "about 1 lb",
     "imageUrl": "https://m.media-amazon.com/images/I/7147a0BYhcL._SL300_.jpg",
+    "price": "$10.52",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 205,
     "active": true
   },
@@ -218,6 +264,8 @@
     "name": "Breakfast sausage",
     "size": "12 oz",
     "imageUrl": "https://m.media-amazon.com/images/I/51iz7x5SNTL._SL300_.jpg",
+    "price": "$2.39",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 206,
     "active": true
   },
@@ -228,6 +276,8 @@
     "name": "Sliced ham",
     "size": "about 9 oz",
     "imageUrl": "https://m.media-amazon.com/images/I/41A7isDKs1L._SL300_.jpg",
+    "price": "$3.99",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 207,
     "active": true
   },
@@ -238,6 +288,8 @@
     "name": "Salami",
     "size": "about 8 oz",
     "imageUrl": "https://m.media-amazon.com/images/I/71GTWmVjTuL._SL300_.jpg",
+    "price": "$5.99",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 208,
     "active": true
   },
@@ -247,6 +299,8 @@
     "section": "Dairy and eggs",
     "name": "Eggs",
     "imageUrl": "https://m.media-amazon.com/images/I/311usfX4KiL._SL300_.jpg",
+    "price": "$4.37",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 301,
     "active": true
   },
@@ -256,6 +310,8 @@
     "section": "Dairy and eggs",
     "name": "Unsalted butter",
     "imageUrl": "https://m.media-amazon.com/images/I/41R8ft5sefL._SL300_.jpg",
+    "price": "$2.99",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 302,
     "active": true
   },
@@ -265,6 +321,8 @@
     "section": "Dairy and eggs",
     "name": "Plain Greek yogurt",
     "imageUrl": "https://m.media-amazon.com/images/I/31i24EPvC3L._SL300_.jpg",
+    "price": "$5.97",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 303,
     "active": true
   },
@@ -274,6 +332,8 @@
     "section": "Dairy and eggs",
     "name": "Chobani Flip",
     "imageUrl": "https://m.media-amazon.com/images/I/51rg4u1Ib9L._SL300_.jpg",
+    "price": "$1.50 each",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 304,
     "active": true
   },
@@ -283,6 +343,8 @@
     "section": "Dairy and eggs",
     "name": "Feta",
     "imageUrl": "https://m.media-amazon.com/images/I/714vJ0%2BHYgL._SL300_.jpg",
+    "price": "$6.79",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 305,
     "active": true
   },
@@ -292,6 +354,8 @@
     "section": "Dairy and eggs",
     "name": "Cream cheese",
     "imageUrl": "https://m.media-amazon.com/images/I/714SH0ZpR0L._SL300_.jpg",
+    "price": "$4.46",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 306,
     "active": true
   },
@@ -301,6 +365,8 @@
     "section": "Dairy and eggs",
     "name": "Sour cream",
     "imageUrl": "https://m.media-amazon.com/images/I/41M1ipdgb6L._SL300_.jpg",
+    "price": "$1.74",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 307,
     "active": true
   },
@@ -310,6 +376,8 @@
     "section": "Dairy and eggs",
     "name": "Cheddar",
     "imageUrl": "https://m.media-amazon.com/images/I/41SYwQbn%2B0L._SL300_.jpg",
+    "price": "$1.99",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 308,
     "active": true
   },
@@ -319,6 +387,8 @@
     "section": "Dairy and eggs",
     "name": "Parmesan",
     "imageUrl": "https://m.media-amazon.com/images/I/71nKSqZKJ9L._SL300_.jpg",
+    "price": "$10.57",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 309,
     "active": true
   },
@@ -328,6 +398,8 @@
     "section": "Dairy and eggs",
     "name": "Shredded cheese",
     "imageUrl": "https://m.media-amazon.com/images/I/41OXzKsEISL._SL300_.jpg",
+    "price": "$1.79",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 310,
     "active": true
   },
@@ -337,6 +409,8 @@
     "section": "Bread and breakfast",
     "name": "Bagels",
     "imageUrl": "https://m.media-amazon.com/images/I/71CnKfmMtiL._SL300_.jpg",
+    "price": "$2.05",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 401,
     "active": true
   },
@@ -346,6 +420,8 @@
     "section": "Bread and breakfast",
     "name": "Sliced bread",
     "imageUrl": "https://m.media-amazon.com/images/I/41LfJG4ssrL._SL300_.jpg",
+    "price": "$3.86",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 402,
     "active": true
   },
@@ -355,6 +431,8 @@
     "section": "Bread and breakfast",
     "name": "Granola",
     "imageUrl": "https://m.media-amazon.com/images/I/41Ko5HPa8tL._SL300_.jpg",
+    "price": "$3.79",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 403,
     "active": true
   },
@@ -364,6 +442,8 @@
     "section": "Bread and breakfast",
     "name": "Honey",
     "imageUrl": "https://m.media-amazon.com/images/I/31kGt1MAO-L._SL300_.jpg",
+    "price": "$5.49",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 404,
     "active": true
   },
@@ -373,6 +453,8 @@
     "section": "Pantry",
     "name": "Tuna in olive oil",
     "imageUrl": "https://m.media-amazon.com/images/I/41c%2Bd4svh3L._SL300_.jpg",
+    "price": "$2.97",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 501,
     "active": true
   },
@@ -382,6 +464,8 @@
     "section": "Pantry",
     "name": "Cannellini beans",
     "imageUrl": "https://m.media-amazon.com/images/I/51igqUFFK8L._SL300_.jpg",
+    "price": "$1.68",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 502,
     "active": true
   },
@@ -391,6 +475,8 @@
     "section": "Pantry",
     "name": "Chickpeas",
     "imageUrl": "https://m.media-amazon.com/images/I/41hCL%2Bc5Y6L._SL300_.jpg",
+    "price": "$0.83",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 503,
     "active": true
   },
@@ -400,6 +486,8 @@
     "section": "Pantry",
     "name": "Rice",
     "imageUrl": "https://m.media-amazon.com/images/I/41oIoXZ80ZL._SL300_.jpg",
+    "price": "$8.98",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 504,
     "active": true
   },
@@ -409,6 +497,8 @@
     "section": "Pantry",
     "name": "Pasta",
     "imageUrl": "https://m.media-amazon.com/images/I/410ymBds87L._SL300_.jpg",
+    "price": "$1.88",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 506,
     "active": true
   },
@@ -418,6 +508,8 @@
     "section": "Pantry",
     "name": "Pasta sauce",
     "imageUrl": "https://m.media-amazon.com/images/I/71ZMZeP%2B61L._SL300_.jpg",
+    "price": "$5.98",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 507,
     "active": true
   },
@@ -427,6 +519,8 @@
     "section": "Pantry",
     "name": "Olive oil",
     "imageUrl": "https://m.media-amazon.com/images/I/71xsbul4RBL._SL300_.jpg",
+    "price": "$12.15",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 508,
     "active": true
   },
@@ -436,6 +530,8 @@
     "section": "Pantry",
     "name": "Lemon juice",
     "imageUrl": "https://m.media-amazon.com/images/I/411HoeyQ7ML._SL300_.jpg",
+    "price": "$2.99",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 509,
     "active": true
   },
@@ -445,6 +541,8 @@
     "section": "Pantry",
     "name": "Olives",
     "imageUrl": "https://m.media-amazon.com/images/I/51UX5AtuCCL._SL300_.jpg",
+    "price": "$7.99",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 510,
     "active": true
   },
@@ -454,6 +552,8 @@
     "section": "Pantry",
     "name": "Cornichons",
     "imageUrl": "https://m.media-amazon.com/images/I/61Vmq9XXY6L._SL300_.jpg",
+    "price": "$4.79",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 511,
     "active": true
   },
@@ -463,6 +563,8 @@
     "section": "Pantry",
     "name": "Ponzu",
     "imageUrl": "https://m.media-amazon.com/images/I/31MX9T6PypL._SL300_.jpg",
+    "price": "$3.29",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 512,
     "active": true
   },
@@ -472,6 +574,8 @@
     "section": "Snacks",
     "name": "Hummus snack packs",
     "imageUrl": "https://m.media-amazon.com/images/I/41BP0HkdtAL._SL300_.jpg",
+    "price": "$2.50 each",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 601,
     "active": true
   },
@@ -481,6 +585,8 @@
     "section": "Snacks",
     "name": "Crackers or chips",
     "imageUrl": "https://m.media-amazon.com/images/I/71k-iyceolL._SL300_.jpg",
+    "price": "$3.97",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 602,
     "active": true
   },
@@ -490,6 +596,8 @@
     "section": "Snacks",
     "name": "Almonds or pistachios",
     "imageUrl": "https://m.media-amazon.com/images/I/51%2BXAcbhhVL._SL300_.jpg",
+    "price": "$8.49",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 603,
     "active": true
   },
@@ -499,6 +607,8 @@
     "section": "Snacks",
     "name": "Protein bars",
     "imageUrl": "https://m.media-amazon.com/images/I/61RQiIT5RPL._SL300_.jpg",
+    "price": "$20.98 for a box of 12",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 604,
     "active": true
   },
@@ -508,6 +618,8 @@
     "section": "Snacks",
     "name": "Gummy bears",
     "imageUrl": "https://m.media-amazon.com/images/I/41ULm-A8gvL._SL300_.jpg",
+    "price": "$1.48",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 605,
     "active": true
   },
@@ -517,6 +629,8 @@
     "section": "Snacks",
     "name": "Ice cream bars",
     "imageUrl": "https://m.media-amazon.com/images/I/51qBEPgApaL._SL300_.jpg",
+    "price": "$6.69 for a box of 6",
+    "priceAt": "2026-10-26T02:02:55.000Z",
     "sort": 606,
     "active": true
   },
