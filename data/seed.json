@@ -526,6 +526,8 @@
     "section": "Bread",
     "name": "Borodinsky bread",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/global/2816825/854448/medium.jpg",
+    "price": "$5.49",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 101,
     "active": true
   },
@@ -535,6 +537,8 @@
     "section": "Bread",
     "name": "Darnitsky bread",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6801021/10401156/medium.jpg",
+    "price": "$2.29",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 102,
     "active": true
   },
@@ -544,6 +548,8 @@
     "section": "Dairy",
     "name": "Kefir",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/13966303/10582409/medium.jpg",
+    "price": "$3.29",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 201,
     "active": true
   },
@@ -553,6 +559,8 @@
     "section": "Dairy",
     "name": "Tvorog (farmer cheese)",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/14806295/9216285/medium.jpg",
+    "price": "$4.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 202,
     "active": true
   },
@@ -562,6 +570,8 @@
     "section": "Dairy",
     "name": "Ryazhenka",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/13966304/12342405/medium.jpg",
+    "price": "$3.59",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 203,
     "active": true
   },
@@ -571,6 +581,8 @@
     "section": "Dairy",
     "name": "Syrki (glazed curd bars)",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/global/2945297/858806/medium.jpg",
+    "price": "$2.29",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 204,
     "active": true
   },
@@ -581,6 +593,8 @@
     "name": "Doktorskaya",
     "size": "about 0.5 lb",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6763120/12095531/medium.jpg",
+    "price": "$6.49/lb sale, reg. $7.69",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 301,
     "active": true
   },
@@ -591,6 +605,8 @@
     "name": "Old Kiev salami",
     "size": "about 0.5 lb",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6754457/10744087/medium.jpg",
+    "price": "$19.99/lb",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 302,
     "active": true
   },
@@ -601,6 +617,8 @@
     "name": "Kabanosy",
     "size": "about 1 lb",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/global/2954187/944472/medium.jpg",
+    "price": "$14.49/lb",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 303,
     "active": true
   },
@@ -611,6 +629,8 @@
     "name": "Sardelki",
     "size": "about 1 lb",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/13336817/12175274/medium.jpg",
+    "price": "$8.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 304,
     "active": true
   },
@@ -621,6 +641,8 @@
     "name": "Knockwurst",
     "size": "about 1 lb",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6757489/862871/medium.jpg",
+    "price": "$11.49/lb",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 305,
     "active": true
   },
@@ -630,6 +652,8 @@
     "section": "Deli",
     "name": "Korolevsky smoked cheese",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6757070/1755971/medium.jpg",
+    "price": "$9.99/lb",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 306,
     "active": true
   },
@@ -640,6 +664,8 @@
     "name": "Duck legs",
     "size": "about 2 lb",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6755361/12541619/medium.jpg",
+    "price": "$12.99/lb",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 401,
     "active": true
   },
@@ -649,6 +675,8 @@
     "section": "Meat and fish",
     "name": "Herring fillets in oil",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6786418/11841316/medium.jpg",
+    "price": "$9.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 402,
     "active": true
   },
@@ -659,6 +687,8 @@
     "name": "Hot-smoked mackerel",
     "size": "about 1 lb",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/20206443/13153107/medium.jpg",
+    "price": "$8.49/lb sale, reg. $9.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 403,
     "active": true
   },
@@ -668,6 +698,8 @@
     "section": "Frozen",
     "name": "Pelmeni",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/20159670/12601413/medium.jpg",
+    "price": "$4.49/lb",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 501,
     "active": true
   },
@@ -677,6 +709,8 @@
     "section": "Frozen",
     "name": "Vareniki, sweet cheese",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/19870651/12468072/medium.jpg",
+    "price": "$5.49",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 502,
     "active": true
   },
@@ -686,6 +720,8 @@
     "section": "Frozen",
     "name": "Vareniki, cherry",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/19868971/12468073/medium.jpg",
+    "price": "$7.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 503,
     "active": true
   },
@@ -694,7 +730,9 @@
     "store": "Netcost",
     "section": "Frozen",
     "name": "Syrniki",
-    "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/18438573/11667623/medium.jpg",
+    "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/19587112/12399226/medium.jpg",
+    "price": "$6.49",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 504,
     "active": true
   },
@@ -704,6 +742,8 @@
     "section": "Prepared foods",
     "name": "Olivier salad",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/17227414/12038500/medium.jpg",
+    "price": "$8.99/lb",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 601,
     "active": true
   },
@@ -713,6 +753,8 @@
     "section": "Prepared foods",
     "name": "Vinegret",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/17221313/12584242/medium.jpg",
+    "price": "$8.99/lb",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 602,
     "active": true
   },
@@ -722,6 +764,8 @@
     "section": "Prepared foods",
     "name": "Green borsch",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/7743384/11977491/medium.jpg",
+    "price": "$5.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 603,
     "active": true
   },
@@ -730,7 +774,9 @@
     "store": "Netcost",
     "section": "Prepared foods",
     "name": "Blini",
-    "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/global/5555436/8588923/medium.jpg",
+    "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/global/2951968/8869816/medium.jpg",
+    "price": "$9.49/lb",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 604,
     "active": true
   },
@@ -740,6 +786,8 @@
     "section": "Pickles and condiments",
     "name": "Sour pickles",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/12684494/12594730/medium.jpg",
+    "price": "$7.49",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 701,
     "active": true
   },
@@ -749,6 +797,8 @@
     "section": "Pickles and condiments",
     "name": "Pickled cherry tomatoes",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/12684496/11881537/medium.jpg",
+    "price": "$8.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 702,
     "active": true
   },
@@ -758,6 +808,8 @@
     "section": "Pickles and condiments",
     "name": "Sauerkraut",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/global/1076233/858982/medium.jpg",
+    "price": "$3.49 sale, reg. $4.49",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 703,
     "active": true
   },
@@ -767,6 +819,8 @@
     "section": "Pickles and condiments",
     "name": "Russian mustard",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6800891/10586725/medium.jpg",
+    "price": "$3.69",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 704,
     "active": true
   },
@@ -776,6 +830,8 @@
     "section": "Pantry",
     "name": "Buckwheat (kasha)",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6811286/9382706/medium.jpg",
+    "price": "$3.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 801,
     "active": true
   },
@@ -785,6 +841,8 @@
     "section": "Pantry",
     "name": "Riga sprats",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/global/2145289/1198729/medium.jpg",
+    "price": "$3.99 sale, reg. $4.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 802,
     "active": true
   },
@@ -794,6 +852,8 @@
     "section": "Pantry",
     "name": "Salmon pâté with dill",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/14798517/11002599/medium.jpg",
+    "price": "$2.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 803,
     "active": true
   },
@@ -803,6 +863,8 @@
     "section": "Pantry",
     "name": "Sunflower oil, unrefined",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6759135/11439917/medium.jpg",
+    "price": "$4.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 804,
     "active": true
   },
@@ -811,7 +873,9 @@
     "store": "Netcost",
     "section": "Pantry",
     "name": "Black tea",
-    "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/7651450/1574454/medium.jpg",
+    "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6759731/13239288/medium.jpg",
+    "price": "$10.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 805,
     "active": true
   },
@@ -821,6 +885,8 @@
     "section": "Snacks and sweets",
     "name": "Sukhariki",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6780597/1803254/medium.jpg",
+    "price": "$1.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 901,
     "active": true
   },
@@ -830,6 +896,8 @@
     "section": "Snacks and sweets",
     "name": "Chanterelle potato chips",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/18832048/11841911/medium.jpg",
+    "price": "$2.99 sale, reg. $4.79",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 902,
     "active": true
   },
@@ -839,6 +907,8 @@
     "section": "Snacks and sweets",
     "name": "Semechki (sunflower seeds)",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/global/414388/1215253/medium.jpg",
+    "price": "$6.49",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 903,
     "active": true
   },
@@ -848,6 +918,8 @@
     "section": "Snacks and sweets",
     "name": "Sushki",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/14579498/10586544/medium.jpg",
+    "price": "$1.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 904,
     "active": true
   },
@@ -857,6 +929,8 @@
     "section": "Snacks and sweets",
     "name": "Pryaniki",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/global/2126227/972445/medium.jpg",
+    "price": "$3.49",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 905,
     "active": true
   },
@@ -865,7 +939,9 @@
     "store": "Netcost",
     "section": "Snacks and sweets",
     "name": "Zefir",
-    "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6785185/10170479/medium.jpg",
+    "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/global/415151/1137613/medium.jpg",
+    "price": "$3.79",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 906,
     "active": true
   },
@@ -875,6 +951,8 @@
     "section": "Snacks and sweets",
     "name": "Halva",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/global/324797/1214612/medium.jpg",
+    "price": "$2.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 907,
     "active": true
   },
@@ -884,6 +962,8 @@
     "section": "Drinks",
     "name": "Kvass",
     "imageUrl": "https://d226b0iufwcjmj.cloudfront.net/product-images/1265/6752150/2082026/medium.jpg",
+    "price": "$3.99",
+    "priceAt": "2026-10-26T01:50:54.000Z",
     "sort": 1001,
     "active": true
   }

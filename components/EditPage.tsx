@@ -7,6 +7,7 @@ import {
   buildExportText,
   formatDate,
   formatDateTime,
+  formatShortDate,
   groupBySection,
   itemLabel,
   sortItems,
@@ -28,6 +29,7 @@ type ItemDraft = {
   store: Store;
   section: string;
   size: string;
+  price: string;
   imageUrl: string;
   sort: string;
   active: boolean;
@@ -49,6 +51,7 @@ function draftFrom(item: Item): ItemDraft {
     store: item.store,
     section: item.section,
     size: item.size ?? "",
+    price: item.price ?? "",
     imageUrl: item.imageUrl ?? "",
     sort: String(item.sort),
     active: item.active,
@@ -64,6 +67,7 @@ function listAsJson(items: Item[]): string {
       section: i.section,
       name: i.name,
       ...(i.size ? { size: i.size } : {}),
+      ...(i.price ? { price: i.price } : {}),
       ...(i.imageUrl ? { imageUrl: i.imageUrl } : {}),
       sort: i.sort,
       active: i.active,
@@ -107,6 +111,11 @@ export default function EditPage() {
     const next: Item = { ...item, ...patch };
     if (!next.size) delete next.size;
     if (!next.imageUrl) delete next.imageUrl;
+    if ("price" in patch) next.priceAt = next.price ? new Date().toISOString() : undefined;
+    if (!next.price) {
+      delete next.price;
+      delete next.priceAt;
+    }
     return mutate({
       apply: (d) => replaceItem(d, next),
       undo: (d) => replaceItem(d, item),
@@ -159,6 +168,7 @@ export default function EditPage() {
       name: draft.name.trim(),
       size: draft.size.trim() || undefined,
       imageUrl: draft.imageUrl.trim() || undefined,
+      price: draft.price.trim() || undefined,
       sort: draft.sort.trim() ? Number(draft.sort) : 1e9,
       active: draft.active,
     };
@@ -172,6 +182,7 @@ export default function EditPage() {
           name: draft.name,
           size: draft.size,
           imageUrl: draft.imageUrl,
+          price: draft.price,
           sort: draft.sort.trim() === "" ? undefined : draft.sort,
           active: draft.active,
         }),
@@ -385,6 +396,13 @@ function ItemsEditor({
                               </p>
                               <p className="row-sub">
                                 {item.size ? `${item.size} · ` : ""}
+                                {item.price && (
+                                  <>
+                                    <span className="price">{item.price}</span>
+                                    {item.priceAt ? ` as of ${formatShortDate(item.priceAt)}` : ""}
+                                    {" · "}
+                                  </>
+                                )}
                                 <span className="mono">sort {item.sort}</span>
                               </p>
                               {note && (
@@ -513,6 +531,17 @@ function ItemFieldsForm({
         />
       </div>
       <div className="field">
+        <label htmlFor={`${id}-price`}>Price (optional)</label>
+        <input
+          id={`${id}-price`}
+          className="input"
+          value={draft.price}
+          onChange={(e) => set("price", e.target.value)}
+          placeholder="$5.49 or $7.69/lb"
+          maxLength={LIMITS.price}
+        />
+      </div>
+      <div className="field">
         <label htmlFor={`${id}-sort`}>Sort</label>
         <input
           id={`${id}-sort`}
@@ -607,7 +636,16 @@ function ItemEditor({
 }
 
 function AddItemForm({ data, onCreate }: { data: ListData; onCreate: (draft: ItemDraft) => Promise<boolean> }) {
-  const empty: ItemDraft = { name: "", store: "Amazon Fresh", section: "", size: "", imageUrl: "", sort: "", active: true };
+  const empty: ItemDraft = {
+    name: "",
+    store: "Amazon Fresh",
+    section: "",
+    size: "",
+    price: "",
+    imageUrl: "",
+    sort: "",
+    active: true,
+  };
   const [draft, setDraft] = useState<ItemDraft>(empty);
 
   const submit = async (e: React.FormEvent) => {
@@ -704,7 +742,7 @@ function ImportPanel({
     <section className="card card-pad stack" aria-label="Import list">
       <p>
         Paste a JSON list to replace the items. Items are matched by <code>id</code>, or else by store and name, and
-        keep their photo and note. Anything not in the pasted list is removed.
+        keep their photo, price and note. Anything not in the pasted list is removed.
       </p>
       <details open>
         <summary style={{ cursor: "pointer", minHeight: 44, display: "flex", alignItems: "center" }}>
@@ -712,7 +750,8 @@ function ImportPanel({
         </summary>
         <p className="row-sub">
           Required: <code>store</code> (&quot;Amazon Fresh&quot; or &quot;Netcost&quot;), <code>section</code>,{" "}
-          <code>name</code>. Optional: <code>id</code>, <code>size</code>, <code>imageUrl</code>, <code>sort</code>,{" "}
+          <code>name</code>. Optional: <code>id</code>, <code>size</code>, <code>price</code>, <code>imageUrl</code>,{" "}
+          <code>sort</code>,{" "}
           <code>active</code>. Without <code>sort</code>, items keep the pasted order.
         </p>
         <pre className="code">{IMPORT_EXAMPLE}</pre>

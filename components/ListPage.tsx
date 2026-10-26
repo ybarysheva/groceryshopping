@@ -383,6 +383,7 @@ function ItemRow({
         <div className="row-main">
           <p className="row-name">{item.name}</p>
           {item.size && <p className="row-sub">{item.size}</p>}
+          {item.price && <p className="row-sub price">{item.price}</p>}
           {note && !editing && (
             <div className="note-callout">
               <p>

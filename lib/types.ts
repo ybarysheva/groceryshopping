@@ -11,6 +11,10 @@ export type Item = {
   name: string;
   size?: string;
   imageUrl?: string;
+  /** Free text, e.g. "$5.49" or "$7.69/lb". */
+  price?: string;
+  /** When the price was last set (ISO). Stamped by the server, never sent by clients. */
+  priceAt?: string;
   active: boolean;
   sort: number;
 };
@@ -50,6 +54,7 @@ export const LIMITS = {
   name: 120,
   section: 60,
   size: 60,
+  price: 40,
   imageUrl: 1000,
   maxItems: 500,
   maxAdds: 200,

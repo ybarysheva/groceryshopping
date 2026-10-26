@@ -27,6 +27,12 @@ export function formatDate(iso: string): string {
   }).format(new Date(iso));
 }
 
+export function formatShortDate(iso: string): string {
+  return new Intl.DateTimeFormat("en-US", { timeZone: TIME_ZONE, month: "short", day: "numeric" }).format(
+    new Date(iso),
+  );
+}
+
 export function sortItems(items: Item[]): Item[] {
   return [...items].sort((a, b) => a.sort - b.sort || a.name.localeCompare(b.name));
 }
@@ -62,7 +68,15 @@ export function statusLine(status: ListData["status"], finalizedAt: string | nul
 
 export type ExportOrder = {
   store: AddStore;
-  items: { store: Store; section: string; name: string; size: string | null; note: string | null }[];
+  items: {
+    store: Store;
+    section: string;
+    name: string;
+    size: string | null;
+    price: string | null;
+    priceAt: string | null;
+    note: string | null;
+  }[];
   adds: { store: AddStore; text: string }[];
 };
 
@@ -83,6 +97,8 @@ export function buildExportJson(data: ListData, now = new Date()): ExportJson {
         section: i.section,
         name: i.name,
         size: i.size ?? null,
+        price: i.price ?? null,
+        priceAt: i.priceAt ?? null,
         note: data.notes[i.id]?.text ?? null,
       })),
     ),
@@ -109,7 +125,8 @@ export function buildExportText(data: ListData): string {
       lines.push(section.name);
       for (const item of section.items) {
         const note = data.notes[item.id]?.text;
-        lines.push(`- ${itemLabel(item)}${note ? ` (note: ${note})` : ""}`);
+        const extra = [item.price, note && `note: ${note}`].filter(Boolean).join("; ");
+        lines.push(`- ${itemLabel(item)}${extra ? ` (${extra})` : ""}`);
       }
     }
     if (adds.length > 0) {

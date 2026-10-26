@@ -342,6 +342,12 @@ textarea {
   overflow-wrap: anywhere;
 }
 
+.price {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--ink);
+}
+
 .row-hidden .row-name,
 .row-hidden .thumb {
   opacity: 0.45;

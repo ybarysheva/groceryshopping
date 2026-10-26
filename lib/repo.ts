@@ -134,7 +134,17 @@ function compactItem(item: Item): Item {
   const out: Item = { ...item };
   if (!out.size) delete out.size;
   if (!out.imageUrl) delete out.imageUrl;
+  if (!out.price) {
+    delete out.price;
+    delete out.priceAt;
+  }
   return out;
+}
+
+/** Keeps priceAt when the price is unchanged; stamps it when the price is new or different. */
+function priceStamp(price: string | undefined, before: Item | undefined, now: string): string | undefined {
+  if (!price) return undefined;
+  return before?.price === price ? (before.priceAt ?? now) : now;
 }
 
 export async function createItem(fields: ItemFields): Promise<Item> {
@@ -149,6 +159,8 @@ export async function createItem(fields: ItemFields): Promise<Item> {
     name: fields.name,
     size: fields.size,
     imageUrl: fields.imageUrl,
+    price: fields.price,
+    priceAt: priceStamp(fields.price, undefined, new Date().toISOString()),
     sort: fields.sort ?? nextSort(items, fields.store, fields.section),
     active: fields.active ?? true,
   });
@@ -163,6 +175,8 @@ export async function updateItem(id: string, patch: Partial<ItemFields>): Promis
   const current = items.find((i) => i.id === id);
   if (!current) throw new UserError("That item was removed from the list.", 404);
   const item = compactItem({ ...current, ...patch, id });
+  if ("price" in patch) item.priceAt = priceStamp(item.price, current, new Date().toISOString());
+  if (!item.priceAt) delete item.priceAt;
   assertUniqueName(items, item);
   await getKV().exec([{ type: "hset", key: KEYS.items, values: { [id]: JSON.stringify(item) } }]);
   return item;
@@ -186,7 +200,7 @@ export type ImportPlan = {
   basis: string;
 };
 
-const COMPARED: (keyof Item)[] = ["store", "section", "name", "size", "imageUrl", "sort", "active"];
+const COMPARED: (keyof Item)[] = ["store", "section", "name", "size", "imageUrl", "price", "sort", "active"];
 
 function fingerprint(items: Item[]): string {
   const sorted = [...items].sort((a, b) => a.id.localeCompare(b.id)).map(compactItem);
@@ -198,6 +212,7 @@ function planImport(current: Item[], notes: Record<string, Note>, entries: Impor
   const matched = new Set<string>();
   const next: Item[] = [];
   const plan: Omit<ImportPlan, "basis"> = { added: [], changed: [], removed: [], unchanged: 0 };
+  const now = new Date().toISOString();
 
   // Match ids first, so a name match can't steal an item another entry claims by id.
   const idMatches = new Map<ImportEntry, Item>();
@@ -222,6 +237,9 @@ function planImport(current: Item[], notes: Record<string, Note>, entries: Impor
       name: entry.name,
       size: entry.size,
       imageUrl: entry.imageUrl || before?.imageUrl,
+      // Like photos, a price is kept when the pasted entry has none; clear it on /edit.
+      price: entry.price || before?.price,
+      priceAt: priceStamp(entry.price || before?.price, before, now),
       sort: entry.sort,
       active: entry.active ?? true,
     });

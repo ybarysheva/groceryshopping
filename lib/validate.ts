@@ -65,7 +65,7 @@ export function sortValue(v: unknown): Result<number> {
 export const ID_PATTERN = /^[A-Za-z0-9_-]{1,64}$/;
 export const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-export type ItemFields = Omit<Item, "id" | "sort" | "active"> & { sort?: number; active?: boolean };
+export type ItemFields = Omit<Item, "id" | "sort" | "active" | "priceAt"> & { sort?: number; active?: boolean };
 
 /**
  * Validates item fields. With `partial`, only the keys present are checked and returned.
@@ -97,6 +97,11 @@ export function itemFields(
     if (!r.ok) return r;
     out.size = r.value;
   }
+  if ("price" in input) {
+    const r = text(input.price, "price", LIMITS.price);
+    if (!r.ok) return r;
+    out.price = r.value;
+  }
   if ("imageUrl" in input) {
     const r = imageUrl(input.imageUrl);
     if (!r.ok) return r;
@@ -121,6 +126,7 @@ export type ImportEntry = {
   name: string;
   size?: string;
   imageUrl?: string;
+  price?: string;
   sort: number;
   active?: boolean;
 };
@@ -177,6 +183,7 @@ export function importList(raw: string): Result<ImportEntry[]> & { errors?: stri
     };
     if (f.size) entry.size = f.size;
     if (f.imageUrl) entry.imageUrl = f.imageUrl;
+    if (f.price) entry.price = f.price;
     if (f.active !== undefined) entry.active = f.active;
 
     if (rawEntry.id !== undefined && rawEntry.id !== null && rawEntry.id !== "") {

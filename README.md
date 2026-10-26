@@ -64,8 +64,9 @@ Paste a JSON array of items:
 ```
 
 - Required: `store` (`"Amazon Fresh"` or `"Netcost"`), `section`, `name`.
-- Optional: `id`, `size`, `imageUrl`, `sort`, `active` (defaults to `true`).
-- Matching: by `id` when given, otherwise by store + name (case-insensitive). Matched items keep their id, their photo (unless a new `imageUrl` is given) and any note. Unmatched entries become new items. Existing items not in the paste are removed, along with their notes.
+- Optional: `id`, `size`, `price`, `imageUrl`, `sort`, `active` (defaults to `true`).
+- `price` is free text up to 40 characters, e.g. `"$5.49"`, `"$7.69/lb"` or `"$6.49/lb sale, reg. $7.69"`. The server records when each price was set (`priceAt`); you never send that.
+- Matching: by `id` when given, otherwise by store + name (case-insensitive). Matched items keep their id, their photo and price (unless a new `imageUrl` / `price` is given) and any note. To clear a price, edit the item on `/edit`. Unmatched entries become new items. Existing items not in the paste are removed, along with their notes.
 - Missing `sort` means the order in the pasted array.
 - **Preview** shows what will be added, changed, reordered and removed, then **Replace list** applies it. If the list changed between preview and replace, you're asked to preview again.
 - Errors name the entry and the problem, for example `Entry 4 ("kefir"): same store and name as entry 3.`
@@ -83,7 +84,7 @@ Paste a JSON array of items:
   "orders": [
     {
       "store": "Amazon Fresh",
-      "items": [{"store": "Amazon Fresh", "section": "Produce", "name": "Blueberries", "size": null, "note": "get 2"}],
+      "items": [{"store": "Amazon Fresh", "section": "Produce", "name": "Blueberries", "size": null, "price": "$4.99", "priceAt": "2026-10-25T21:50:00.000Z", "note": "get 2"}],
       "adds": [{"store": "Amazon Fresh", "text": "Milk"}]
     },
     {"store": "Netcost", "items": [], "adds": []},
@@ -100,7 +101,7 @@ Grocery order (status: final, Oct 25, 2026 2:10 PM)
 AMAZON FRESH
 Produce
 - Bananas
-- Blueberries (note: get 2)
+- Blueberries ($4.99; note: get 2)
 Meat and fish
 - Chicken thighs, boneless skinless, about 6 lb (2 packs)
 Added
@@ -113,7 +114,7 @@ EITHER STORE
 - Paper towels
 ```
 
-- Only shown (active) items. Notes appear inline in parentheses. Adds go under "Added" in their store; "Either" adds get their own block. A store with nothing on it is left out.
+- Only shown (active) items. Price and note appear inline in parentheses, price first, separated by `;`. Adds go under "Added" in their store; "Either" adds get their own block. A store with nothing on it is left out.
 - Times are Brooklyn time (America/New_York). A draft reads `(status: draft)`.
 - `Cache-Control: no-store`, `Access-Control-Allow-Origin: *`.
 
@@ -123,7 +124,7 @@ One hash field per record, so concurrent writes to different items, notes or add
 
 | Key | Type | Contents |
 |---|---|---|
-| `g:items` | hash | item id → `{id, store, section, name, size?, imageUrl?, active, sort}` |
+| `g:items` | hash | item id → `{id, store, section, name, size?, imageUrl?, price?, priceAt?, active, sort}` |
 | `g:notes` | hash | item id → `{text, updatedAt}` |
 | `g:adds` | hash | add id (client UUID) → `{id, store, text, createdAt}` |
 | `g:meta` | hash | `status`, `finalizedAt`, `seededAt` |
@@ -140,3 +141,9 @@ One hash field per record, so concurrent writes to different items, notes or add
 - Both pages are static shells that load data from the API in the browser, so nothing is cached at build. All `/api` routes are `force-dynamic` and send `no-store`.
 - Pages refresh on focus, on tab return and every 30 seconds while visible. An open note editor is never overwritten.
 - Writes update the screen immediately. If the server rejects one, it's undone and a toast explains why.
+
+## Prices
+
+- Each item can have an optional `price` (free text). It shows under the item on both pages, with its "as of" date on `/edit`, and in the export.
+- **Netcost** prices were taken from Netcost's online shop for the **Neptune Ave, Brooklyn** store. Prices differ by store, and specials change weekly. The site can't refresh them by itself, because Netcost blocks requests from servers, so they're a snapshot. To refresh, ask Claude Code to look them up again in a browser, then apply them with Import.
+- **Amazon Fresh** prices aren't pulled automatically. Enter them on `/edit`, or include `price` in the JSON you paste into Import.
