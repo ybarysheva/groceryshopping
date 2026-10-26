@@ -271,8 +271,47 @@ textarea {
 }
 
 .row > .btn,
-.row > .btn-row {
+.row > .btn-row,
+.row > .row-actions {
   margin-top: 2px;
+}
+
+.row-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Small visual mark, full 44px tap target. */
+.btn-remove {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  min-height: 44px;
+  margin-right: -6px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-remove span {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.btn-remove:hover span,
+.btn-remove:active span {
+  border-color: var(--ink);
+  color: var(--ink);
 }
 
 .row-text {
@@ -603,6 +642,11 @@ textarea {
 .toast .btn {
   color: var(--bg);
   border-color: transparent;
+}
+
+.toast .toast-action {
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 @keyframes toast-in {

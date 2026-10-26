@@ -70,6 +70,21 @@ export default function ListPage() {
       request: () => api("DELETE", `/api/adds/${add.id}`),
     });
 
+  // Removing hides the item (same as Hide on /edit), so a mis-tap can be undone and
+  // the item's photo, note and place in the list are kept.
+  const setActive = (item: Item, active: boolean) =>
+    mutate({
+      apply: (d) => ({ ...d, items: d.items.map((i) => (i.id === item.id ? { ...i, active } : i)) }),
+      undo: (d) => ({ ...d, items: d.items.map((i) => (i.id === item.id ? { ...i, active: !active } : i)) }),
+      request: () => api("PATCH", `/api/items/${item.id}`, { active }),
+    });
+
+  const removeItem = async (item: Item) => {
+    if (editingNote === item.id) setEditingNote(null);
+    const ok = await setActive(item, false);
+    if (ok) showToast("info", `Removed ${item.name}.`, { label: "Undo", run: () => void setActive(item, true) });
+  };
+
   const saveNote = (item: Item, text: string) => {
     const previous = data?.notes[item.id];
     const note: Note = { text, updatedAt: new Date().toISOString() };
@@ -133,6 +148,7 @@ export default function ListPage() {
               onEditNote={setEditingNote}
               onSaveNote={saveNote}
               onRemoveAdd={removeAdd}
+              onRemoveItem={removeItem}
             />
           )}
         </div>
@@ -269,6 +285,7 @@ function StoreList({
   onEditNote,
   onSaveNote,
   onRemoveAdd,
+  onRemoveItem,
 }: {
   data: ListData;
   store: Store;
@@ -276,6 +293,7 @@ function StoreList({
   onEditNote: (id: string | null) => void;
   onSaveNote: (item: Item, text: string) => void;
   onRemoveAdd: (add: Add) => void;
+  onRemoveItem: (item: Item) => void;
 }) {
   const sections = groupBySection(data.items.filter((i) => i.store === store && i.active));
   const adds = [...addsForStore(data.adds, store), ...addsForStore(data.adds, "Either")];
@@ -331,6 +349,7 @@ function StoreList({
                 onEdit={() => onEditNote(item.id)}
                 onCancel={() => onEditNote(null)}
                 onSave={(text) => onSaveNote(item, text)}
+                onRemove={() => onRemoveItem(item)}
               />
             ))}
           </ul>
@@ -347,6 +366,7 @@ function ItemRow({
   onEdit,
   onCancel,
   onSave,
+  onRemove,
 }: {
   item: Item;
   note?: Note;
@@ -354,6 +374,7 @@ function ItemRow({
   onEdit: () => void;
   onCancel: () => void;
   onSave: (text: string) => void;
+  onRemove: () => void;
 }) {
   return (
     <li>
@@ -384,13 +405,16 @@ function ItemRow({
             </div>
           )}
         </div>
-        {!note && !editing ? (
-          <button type="button" className="btn btn-sm" onClick={onEdit} aria-label={`Note on ${item.name}`}>
-            Note
+        <div className="row-actions">
+          {!note && !editing && (
+            <button type="button" className="btn btn-sm" onClick={onEdit} aria-label={`Note on ${item.name}`}>
+              Note
+            </button>
+          )}
+          <button type="button" className="btn-remove" onClick={onRemove} aria-label={`Remove ${item.name}`}>
+            <span aria-hidden="true">×</span>
           </button>
-        ) : (
-          <span />
-        )}
+        </div>
       </div>
       {editing && (
         <NoteEditor label={`Note on ${itemLabel(item)}`} initial={note?.text ?? ""} onCancel={onCancel} onSave={onSave} />

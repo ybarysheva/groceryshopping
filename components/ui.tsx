@@ -54,6 +54,18 @@ export function ToastView({
       {toast && (
         <div className="toast" key={toast.id}>
           <span>{toast.text}</span>
+          {toast.action && (
+            <button
+              type="button"
+              className="btn btn-sm toast-action"
+              onClick={() => {
+                toast.action?.run();
+                onClose();
+              }}
+            >
+              {toast.action.label}
+            </button>
+          )}
           <button type="button" className="btn btn-sm" onClick={onClose}>
             Dismiss
           </button>

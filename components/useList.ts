@@ -4,7 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { ListData } from "@/lib/types";
 
 export type SaveState = "idle" | "saving" | "saved";
-export type Toast = { id: number; kind: "error" | "info"; text: string } | null;
+export type ToastAction = { label: string; run: () => void };
+export type Toast = { id: number; kind: "error" | "info"; text: string; action?: ToastAction } | null;
 
 export type ApiResult<T> = { ok: true; data: T } | { ok: false; error: string; status: number; body?: unknown };
 
@@ -55,8 +56,8 @@ export function useList() {
   const writeSeq = useRef(0);
   const savedTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
-  const showToast = useCallback((kind: "error" | "info", text: string) => {
-    setToast({ id: Date.now(), kind, text });
+  const showToast = useCallback((kind: "error" | "info", text: string, action?: ToastAction) => {
+    setToast({ id: Date.now(), kind, text, action });
   }, []);
 
   const load = useCallback(async () => {
@@ -97,7 +98,8 @@ export function useList() {
 
   useEffect(() => {
     if (!toast) return;
-    const t = setTimeout(() => setToast(null), toast.kind === "error" ? 6000 : 2500);
+    // Errors and toasts with an action (Undo) stay up long enough to read and tap.
+    const t = setTimeout(() => setToast(null), toast.kind === "error" || toast.action ? 6000 : 2500);
     return () => clearTimeout(t);
   }, [toast]);
 

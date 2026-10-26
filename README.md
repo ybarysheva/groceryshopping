@@ -2,7 +2,7 @@
 
 A shared, phone-friendly grocery list for Amazon Fresh and Netcost Market.
 
-- `/` is the shared page. Anyone with the link can leave a note on an item or add something. No sign-in.
+- `/` is the shared page. Anyone with the link can leave a note on an item, add something, or remove an item with its × button. No sign-in. Removing hides the item (the same as Hide on `/edit`), with Undo in the toast; bring it back with Show on `/edit`.
 - `/edit` is where the list is managed: edit items, import a new list, mark it final, copy it for Claude, start a new round.
 - `/api/export` is the read-only order that Claude reads to place the orders.
 
