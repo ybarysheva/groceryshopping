@@ -149,6 +149,7 @@ One hash field per record, so concurrent writes to different items, notes or add
 
 ## Prices
 
-- Each item can have an optional `price` (free text). It shows under the item on both pages, with its "as of" date on `/edit`, and in the export.
+- Each item can have an optional `price` (free text). It shows under the item on both pages in gray italics, under a "Prices are estimates." note, with its "as of" date on `/edit`, and in the export.
+- Each store tab ends with an **Estimated total**, also shown per store in the Order card on `/edit`. It adds the first dollar amount of each item's price; `/lb` prices are multiplied by the item's listed weight (1 lb if none). Removed items and free-text adds aren't counted.
 - **Netcost** prices were taken from Netcost's online shop for the **Neptune Ave, Brooklyn** store. Prices differ by store, and specials change weekly. The site can't refresh them by itself, because Netcost blocks requests from servers, so they're a snapshot. To refresh, ask Claude Code to look them up again in a browser, then apply them with Import.
 - **Amazon Fresh** prices aren't pulled automatically. Enter them on `/edit`, or include `price` in the JSON you paste into Import.

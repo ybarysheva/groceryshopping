@@ -240,8 +240,8 @@
     "name": "Steak",
     "size": "about 1.5 lb",
     "imageUrl": "https://m.media-amazon.com/images/I/71u8HA0P80L._SL300_.jpg",
-    "price": "about $24.00, depends on cut and sales",
-    "priceAt": "2026-10-26T02:02:55.000Z",
+    "price": "$15.00",
+    "priceAt": "2026-10-26T02:14:04.000Z",
     "sort": 204,
     "active": true
   },

@@ -1,7 +1,15 @@
 "use client";
 
 import { useCallback, useId, useMemo, useState } from "react";
-import { addsForStore, groupBySection, itemLabel, orderItems, removedItems } from "@/lib/format";
+import {
+  addsForStore,
+  estimateTotal,
+  formatMoney,
+  groupBySection,
+  itemLabel,
+  orderItems,
+  removedItems,
+} from "@/lib/format";
 import {
   ADD_STORES,
   LIMITS,
@@ -321,9 +329,13 @@ function StoreList({
   const sections = groupBySection(orderItems(data).filter((i) => i.store === store));
   const removed = removedItems(data, store);
   const adds = [...addsForStore(data.adds, store), ...addsForStore(data.adds, "Either")];
+  const estimate = estimateTotal(sections.flatMap((s) => s.items));
 
   return (
     <div className="stack">
+      {sections.some((s) => s.items.some((i) => i.price)) && (
+        <p className="estimate-note">Prices are estimates.</p>
+      )}
       {adds.length > 0 && (
         <section className="card" aria-labelledby="added-head">
           <div className="card-head">
@@ -407,7 +419,40 @@ function StoreList({
           </ul>
         </section>
       )}
+
+      {sections.length > 0 && estimate.total > 0 && (
+        <TotalCard store={store} total={estimate.total} unpriced={estimate.unpriced} unpricedAdds={adds.length} />
+      )}
     </div>
+  );
+}
+
+export function TotalCard({
+  store,
+  total,
+  unpriced,
+  unpricedAdds,
+}: {
+  store: Store;
+  total: number;
+  unpriced: number;
+  unpricedAdds: number;
+}) {
+  const left = [
+    unpriced > 0 && `${unpriced} ${unpriced === 1 ? "item" : "items"} without a price`,
+    unpricedAdds > 0 && `${unpricedAdds} added ${unpricedAdds === 1 ? "item" : "items"}`,
+  ].filter(Boolean);
+  return (
+    <section className="card total-card" aria-label={`${store} estimated total`}>
+      <div className="total-line">
+        <h2>Estimated total</h2>
+        <span className="total-amount">{formatMoney(total)}</span>
+      </div>
+      <p className="estimate-note">
+        Rough estimate. By-the-pound items use the amount listed.
+        {left.length > 0 ? ` Doesn't include ${left.join(" or ")}.` : ""}
+      </p>
+    </section>
   );
 }
 

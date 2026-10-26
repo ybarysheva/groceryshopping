@@ -76,6 +76,40 @@ export function removedItems(data: ListData, store: AddStore): Item[] {
   return sortItems(data.items.filter((i) => i.store === store && i.active && data.removed[i.id]));
 }
 
+// ---- Estimated totals
+
+function weightInLb(size?: string): number | null {
+  const m = size?.match(/(\d+(?:\.\d+)?)\s*(lb|oz)\b/i);
+  if (!m) return null;
+  return Number(m[1]) * (m[2].toLowerCase() === "oz" ? 1 / 16 : 1);
+}
+
+/**
+ * Rough cost of one item from its free-text price: the first dollar amount, times the
+ * listed weight for "/lb" prices (1 lb when the item has no weight). Null if unpriced.
+ */
+export function itemEstimate(item: Pick<Item, "price" | "size">): number | null {
+  const m = item.price?.match(/\$\s*(\d+(?:\.\d+)?)(\s*\/\s*lb)?/i);
+  if (!m) return null;
+  const amount = Number(m[1]);
+  return m[2] ? amount * (weightInLb(item.size) ?? 1) : amount;
+}
+
+export function estimateTotal(items: Item[]): { total: number; unpriced: number } {
+  let total = 0;
+  let unpriced = 0;
+  for (const item of items) {
+    const cost = itemEstimate(item);
+    if (cost === null) unpriced++;
+    else total += cost;
+  }
+  return { total, unpriced };
+}
+
+export function formatMoney(n: number): string {
+  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(n);
+}
+
 export type ExportOrder = {
   store: AddStore;
   items: {

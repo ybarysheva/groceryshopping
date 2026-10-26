@@ -8,6 +8,9 @@ import {
   formatDate,
   formatDateTime,
   formatShortDate,
+  estimateTotal,
+  formatMoney,
+  orderItems,
   groupBySection,
   itemLabel,
   sortItems,
@@ -313,6 +316,17 @@ export default function EditPage() {
                 </div>
                 <CopyFallback fallback={claudeCopy.fallback} onClose={claudeCopy.dismiss} />
               </div>
+              <div>
+                <p className="row-name">Estimated totals</p>
+                {STORES.map((store) => (
+                  <p className="row-sub" key={store}>
+                    {store}: {formatMoney(estimateTotal(orderItems(data).filter((i) => i.store === store)).total)}
+                  </p>
+                ))}
+                <p className="estimate-note" style={{ padding: 0 }}>
+                  Rough estimate from the listed prices; added items aren&apos;t counted.
+                </p>
+              </div>
             </section>
 
             <h2 className="section-title">Notes and adds</h2>
@@ -321,6 +335,9 @@ export default function EditPage() {
             <h2 className="section-title" id="items">
               Items
             </h2>
+            <p className="estimate-note" style={{ marginTop: -6, marginBottom: 6 }}>
+              Prices are estimates.
+            </p>
             <ItemsEditor
               data={data}
               editing={editing}

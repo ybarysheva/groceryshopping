@@ -11,6 +11,7 @@ const heading = Bricolage_Grotesque({
 const body = Atkinson_Hyperlegible({
   subsets: ["latin"],
   weight: ["400", "700"],
+  style: ["normal", "italic"],
   variable: "--font-body",
   display: "swap",
 });
